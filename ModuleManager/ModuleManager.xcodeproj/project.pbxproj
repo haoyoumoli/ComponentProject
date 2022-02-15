@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		186D7E7F27BB6CEC00988641 /* UserModuleInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186D7E7E27BB6CEC00988641 /* UserModuleInterface.swift */; };
 		18F2E69D27BA53BD00911615 /* ModuleManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 18F2E69C27BA53BD00911615 /* ModuleManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		18F2E6A427BA541200911615 /* ModuleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F2E6A327BA541200911615 /* ModuleManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		186D7E7E27BB6CEC00988641 /* UserModuleInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModuleInterface.swift; sourceTree = "<group>"; };
 		18F2E69927BA53BD00911615 /* ModuleManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ModuleManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F2E69C27BA53BD00911615 /* ModuleManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModuleManager.h; sourceTree = "<group>"; };
 		18F2E6A327BA541200911615 /* ModuleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleManager.swift; sourceTree = "<group>"; };
@@ -49,6 +51,7 @@
 			children = (
 				18F2E69C27BA53BD00911615 /* ModuleManager.h */,
 				18F2E6A327BA541200911615 /* ModuleManager.swift */,
+				186D7E7E27BB6CEC00988641 /* UserModuleInterface.swift */,
 			);
 			path = ModuleManager;
 			sourceTree = "<group>";
@@ -133,6 +136,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				186D7E7F27BB6CEC00988641 /* UserModuleInterface.swift in Sources */,
 				18F2E6A427BA541200911615 /* ModuleManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

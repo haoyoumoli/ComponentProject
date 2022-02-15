@@ -61,7 +61,7 @@ extension ModuleManager {
     
     
     /// 移除模块
-    /// - Parameter name: "模块的名称"
+    /// - Parameter name: 模块的名称
     public func removeModule(for name:String) {
         if name.isEmpty { return }
         map[name] = nil

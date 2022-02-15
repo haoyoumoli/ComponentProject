@@ -3,7 +3,6 @@ workspace 'ComponentProject'
 def common_pods
   # layout
   pod 'SnapKit'
-  pod 'ProtocolServiceKit/Swift',"~>2.2.1"
 end
 
 abstract_target 'ComponentProject' do

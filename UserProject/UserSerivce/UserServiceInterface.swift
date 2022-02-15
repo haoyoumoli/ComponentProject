@@ -9,13 +9,7 @@ import Foundation
 import ModuleManager
 import UIKit
 
-public protocol UserServiceInterface {
-    
-    func goToLoginVc(from:UIViewController, completion:@escaping (Error?) -> Void)
-    
-    /// 查询是否为vip
-    func getIsVip(completion: @escaping (Bool)->Void)
-}
+
 
 public class UserService:Module {
     
@@ -34,7 +28,7 @@ public class UserService:Module {
    
 }
 
-extension UserService: UserServiceInterface {
+extension UserService: UserModuleInterface {
     public func goToLoginVc(
         from: UIViewController,
         completion: @escaping (Error?) -> Void)

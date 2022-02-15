@@ -6,14 +6,28 @@
 //
 
 import UIKit
+import ModuleManager
+import UserSerivce
+
+struct ModuleNames {
+    static var user:String {
+        return "User"
+    }
+}
+
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //主工程模块注册
+        let m = ModuleManager.shared
+
+        //注册用户模块
+        m.regsisterModule(for: ModuleNames.user, type: UserService.self, parameter: (),lazy: true)
+            
         return true
     }
 
