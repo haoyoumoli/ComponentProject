@@ -17,9 +17,7 @@ public protocol Module: AnyObject {
 
 public class ModuleManager {
     
-    public static let shared = ModuleManager()
-    
-    public init() {}
+    init() {}
     
     deinit {
         debugPrint("ModuleManager deinit")
@@ -31,12 +29,28 @@ public class ModuleManager {
         let type:Module.Type
         let parameter:Any
     }
-    lazy private var lazyMap:[String:LazyMuduleContext] = [:]
     
+    lazy private var lazyMap:[String:LazyMuduleContext] = [:]
+}
+
+
+//MARK: - 对外接口
+extension ModuleManager {
+    
+    //单例
+    public static let shared = ModuleManager()
+    
+    
+    /// 注册模块
+    /// - Parameters:
+    ///   - name: 模块的名称
+    ///   - type: 模块的类型
+    ///   - parameter: 模块初始化所需参数
+    ///   - lazy: 是否懒加载,如果是懒加载,则在请求模块接口实现时初始化模块,否则在这个方法中直接初始化模块
     public func regsisterModule(for name:String,
                                 type:Module.Type,
                                 parameter:Any,
-                                lazy:Bool = false) {
+                                lazy:Bool = true) {
         if name.isEmpty { return }
         if lazy == false {
             map[name] = type.init(parameter: parameter)
@@ -45,12 +59,21 @@ public class ModuleManager {
         }
     }
     
+    
+    /// 移除模块
+    /// - Parameter name: "模块的名称"
     public func removeModule(for name:String) {
         if name.isEmpty { return }
         map[name] = nil
         lazyMap[name] = nil
     }
     
+    
+    /// 获取模块的接口
+    /// - Parameters:
+    ///   - moduleName:模块名称
+    ///   - interfaceType:接口协议类型
+    /// - Returns: 返回实现了模块接口的实例
     public func getInterfaceImp<T>(moduleName:String,interfaceType:T.Type) -> T?  {
         if moduleName.isEmpty { return nil }
         if let module = map[moduleName] {
