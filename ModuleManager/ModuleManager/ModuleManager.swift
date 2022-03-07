@@ -50,7 +50,7 @@ extension ModuleManager {
     public func regsisterModule(for name:String,
                                 type:Module.Type,
                                 parameter:Any,
-                                lazy:Bool = true) {
+                                lazy:Bool = false) {
         if name.isEmpty { return }
         if lazy == false {
             map[name] = type.init(parameter: parameter)

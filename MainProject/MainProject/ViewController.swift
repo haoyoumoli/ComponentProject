@@ -8,13 +8,15 @@
 import UIKit
 import HomeComponent
 import SnapKit
-import ProtocolServiceKit
 import ModuleManager
 
-class ViewController: UIViewController {
 
+class ViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       
         
         //主工程首页测试调用module模块接口
         if let userImp = ModuleManager.shared.getInterfaceImp(moduleName: ModuleNames.user, interfaceType: UserModuleInterface.self)  {
