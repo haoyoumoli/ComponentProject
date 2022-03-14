@@ -3,6 +3,12 @@ workspace 'ComponentProject'
 def common_pods
   # layout
   pod 'SnapKit'
+  
+  # video play
+  pod 'JPVideoPlayer', '~> 3.1.1'
+  
+  # image load
+  pod 'SDWebImage'
 end
 
 abstract_target 'ComponentProject' do
@@ -20,6 +26,12 @@ abstract_target 'ComponentProject' do
     
     target 'HomeComponent' do
     end
+  end
+  
+  
+  target 'VideoPlayDemo' do
+    project 'VideoPlayDemo/VideoPlayDemo.xcodeproj'
+
   end
   
 end

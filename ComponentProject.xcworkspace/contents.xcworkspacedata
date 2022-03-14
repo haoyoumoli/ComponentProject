@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:VideoPlayDemo/VideoPlayDemo.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:ModuleManager/ModuleManager.xcodeproj">
    </FileRef>
    <FileRef
