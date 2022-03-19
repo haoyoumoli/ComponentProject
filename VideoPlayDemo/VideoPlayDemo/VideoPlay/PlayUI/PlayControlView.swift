@@ -85,7 +85,6 @@ extension PlayControlView {
         
         slider.frame = .init(x: 20, y: 10, width: bounds.width - 20 * 2 , height: 30)
         
-        
         playPauseBtn.frame = .init(x: (bounds.width - 50) * 0.5, y: (bounds.height - 40) - 10, width: 50, height: 40)
         
         

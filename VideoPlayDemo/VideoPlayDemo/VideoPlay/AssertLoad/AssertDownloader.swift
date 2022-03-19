@@ -10,7 +10,6 @@ import Foundation
 //MARK: - Define
 class AssertDownloader: NSObject {
     
-    
     static var defaultDownloader: AssertDownloader {
         let config = URLSessionConfiguration.default
         config.requestCachePolicy = .reloadIgnoringLocalCacheData
@@ -23,6 +22,12 @@ class AssertDownloader: NSObject {
     init(sessionConfig:URLSessionConfiguration) {
         super.init()
         self.session = URLSession.init(configuration: sessionConfig, delegate: self, delegateQueue: nil)
+    }
+    
+    deinit {
+        for (_,v) in taskTable {
+            v.task.cancel()
+        }
     }
     
     

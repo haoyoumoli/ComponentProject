@@ -17,15 +17,17 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
        
-        
         //主工程首页测试调用module模块接口
-        if let userImp = ModuleManager.shared.getInterfaceImp(moduleName: ModuleNames.user, interfaceType: UserModuleInterface.self)  {
-            
+        if let userImp = ModuleManager.shared
+            .getInterfaceImp(moduleName: ModuleNames.user,
+                             interfaceType: UserModuleInterface.self
+            )
+        {
             userImp.getIsVip { isVip in
                 if isVip {
-                    debugPrint("你是vip")
+                  debugPrint("你是vip")
                 } else {
-                    debugPrint("你不是vip")
+                  debugPrint("你不是vip")
                 }
             }
         }

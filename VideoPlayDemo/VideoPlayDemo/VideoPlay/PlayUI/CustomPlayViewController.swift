@@ -66,9 +66,7 @@ extension CustomPlayViewController {
            // self.setupCustomPlayerUI()
             //self.startDownloadVideo()
             //self.testWriteReadFile()
-            
-            
-            
+   
         }
         
     }

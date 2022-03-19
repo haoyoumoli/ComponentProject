@@ -62,12 +62,27 @@ class KVOManager: NSObject {
 
 //MARK: - Subtype
 extension KVOManager {
-    struct KVOContext {
-        let observed:NSObject
+    class KVOContext {
+        weak private(set) var observed:NSObject?
         let keypath:String
         let options:NSKeyValueObservingOptions
         let context:UnsafeMutableRawPointer?
         fileprivate let callBack:KVOCallBack
+        
+        
+       init(
+        observed:NSObject?,
+        keypath:String,
+        options:NSKeyValueObservingOptions,
+        context:UnsafeMutableRawPointer?,
+        callBack: @escaping KVOCallBack
+       ) {
+           self.observed = observed
+           self.keypath = keypath
+           self.options = options
+           self.context = context
+           self.callBack = callBack
+       }
         
         func matched
         (object:NSObject,
@@ -87,7 +102,7 @@ private
 extension KVOManager {
     func removeObserver(for contextList:[KVOContext]) {
         for ctx in contextList {
-            ctx.observed.removeObserver(self, forKeyPath: ctx.keypath,context: ctx.context)
+            ctx.observed?.removeObserver(self, forKeyPath: ctx.keypath,context: ctx.context)
         }
     }
 }

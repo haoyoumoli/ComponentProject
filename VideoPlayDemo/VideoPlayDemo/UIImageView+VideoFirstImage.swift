@@ -37,7 +37,6 @@ func getVideoFirstImage(url:URL,completion:@escaping (UIImage?) -> Void) {
             } else if cacheType == SDImageCacheType.disk {
                 cachetypeString = "磁盘"
             }
-            
             debugPrint("缓存命中\(cachetypeString)")
 #endif
             completion(image)
@@ -54,5 +53,13 @@ extension UIImageView {
                 self?.image = image
             }
         }
+    }
+}
+
+
+extension String {
+    var isMp4:Bool {
+        let lastComp = self.components(separatedBy: ".").last
+        return lastComp?.lowercased() == "mp4"
     }
 }

@@ -1,0 +1,1 @@
+<button data-v-6b01719d="" class="van-button van-button--danger van-button--large van-button--disabled van-goods-action-button van-goods-action-button--last van-goods-action-button--danger" disabled="disabled"><div class="van-button__content"><span class="van-button__text">立即购买</span></div></button>

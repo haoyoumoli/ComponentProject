@@ -34,6 +34,13 @@ abstract_target 'ComponentProject' do
 
   end
   
+  target 'BuglyDemo' do
+    project 'BuglyDemo/BuglyDemo.xcodeproj'
+  pod 'Bugly'
+  pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :tag => '7.10.2'
+  # pod 'BuglyHotfix'
+  end
+  
 end
 
 

@@ -23,6 +23,13 @@ import UIKit
         super.init()
         self.installActionsForVideoDownloader()
     }
+     
+     deinit {
+         debugPrint("AssetResourceLoaderDelegate deinit")
+         for ctx in requestContextTable {
+             ctx.sessionTask.cancel()
+         }
+     }
     
     var customScheme:String = "CustomAssetResourceLoaderDelegate"
     
