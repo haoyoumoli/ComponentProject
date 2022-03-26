@@ -10,7 +10,6 @@ import GLKit
 import Darwin
 
 
-
 fileprivate func printCost(_ label:String,_ opearation:() -> Void) {
     let start = Date().timeIntervalSince1970
     opearation()
@@ -116,9 +115,9 @@ extension ViewController {
       //  currentDemo = TextureWrapDemo()
         
         ///c10
-        // currentDemo = MutilTextureDemo()
+         //currentDemo = MutilTextureDemo()
         
         ///c11
-        currentDemo = MRTDemo()
+          currentDemo = MRTDemo()
     }
 }

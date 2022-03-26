@@ -25,6 +25,10 @@
 		1860FFBF27DEE2240035ACF2 /* UIImageView+VideoFirstImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1860FFBE27DEE2240035ACF2 /* UIImageView+VideoFirstImage.swift */; };
 		1860FFC127DEE2C00035ACF2 /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1860FFC027DEE2C00035ACF2 /* Measure.swift */; };
 		1860FFC327DEE5420035ACF2 /* PlayVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1860FFC227DEE5420035ACF2 /* PlayVideoViewController.swift */; };
+		187C95FC27ED9BA9007F2F9C /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 187C95FB27ED9BA9007F2F9C /* libmp3lame.a */; };
+		187C960027ED9BF4007F2F9C /* mp3_encoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 187C95FE27ED9BF4007F2F9C /* mp3_encoder.cpp */; };
+		1888223D27EEC3D400E8FA01 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 1888223C27EEC3D400E8FA01 /* Test.m */; };
+		1888223F27EEC71500E8FA01 /* AudioUnitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1888223E27EEC71500E8FA01 /* AudioUnitHelper.swift */; };
 		DEB8AC8E7CE107BF980DC0F9 /* Pods_ComponentProject_VideoPlayDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A7CF45D25B60F811B7B3119 /* Pods_ComponentProject_VideoPlayDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +53,14 @@
 		1860FFBE27DEE2240035ACF2 /* UIImageView+VideoFirstImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+VideoFirstImage.swift"; sourceTree = "<group>"; };
 		1860FFC027DEE2C00035ACF2 /* Measure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measure.swift; sourceTree = "<group>"; };
 		1860FFC227DEE5420035ACF2 /* PlayVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayVideoViewController.swift; sourceTree = "<group>"; };
+		187C95F927ED9BA9007F2F9C /* lame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
+		187C95FB27ED9BA9007F2F9C /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmp3lame.a; sourceTree = "<group>"; };
+		187C95FD27ED9BF4007F2F9C /* VideoPlayDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VideoPlayDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		187C95FE27ED9BF4007F2F9C /* mp3_encoder.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mp3_encoder.cpp; sourceTree = "<group>"; };
+		187C95FF27ED9BF4007F2F9C /* mp3_encoder.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mp3_encoder.hpp; sourceTree = "<group>"; };
+		1888223B27EEC3D400E8FA01 /* Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
+		1888223C27EEC3D400E8FA01 /* Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
+		1888223E27EEC71500E8FA01 /* AudioUnitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUnitHelper.swift; sourceTree = "<group>"; };
 		32D31AF8F1BA44383FEE0045 /* Pods-ComponentProject-VideoPlayDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComponentProject-VideoPlayDemo.debug.xcconfig"; path = "Target Support Files/Pods-ComponentProject-VideoPlayDemo/Pods-ComponentProject-VideoPlayDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		3A7CF45D25B60F811B7B3119 /* Pods_ComponentProject_VideoPlayDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ComponentProject_VideoPlayDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEE7631529F8C12AB85BB359 /* Pods-ComponentProject-VideoPlayDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComponentProject-VideoPlayDemo.release.xcconfig"; path = "Target Support Files/Pods-ComponentProject-VideoPlayDemo/Pods-ComponentProject-VideoPlayDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -60,6 +72,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEB8AC8E7CE107BF980DC0F9 /* Pods_ComponentProject_VideoPlayDemo.framework in Frameworks */,
+				187C95FC27ED9BA9007F2F9C /* libmp3lame.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +100,7 @@
 		1860FF9327DED9420035ACF2 /* VideoPlayDemo */ = {
 			isa = PBXGroup;
 			children = (
+				187C95F627ED9BA9007F2F9C /* fat-lame */,
 				1860FFC027DEE2C00035ACF2 /* Measure.swift */,
 				1860FFBE27DEE2240035ACF2 /* UIImageView+VideoFirstImage.swift */,
 				1860FFC227DEE5420035ACF2 /* PlayVideoViewController.swift */,
@@ -98,6 +112,12 @@
 				1860FF9D27DED9430035ACF2 /* Assets.xcassets */,
 				1860FF9F27DED9430035ACF2 /* LaunchScreen.storyboard */,
 				1860FFA227DED9430035ACF2 /* Info.plist */,
+				187C95FE27ED9BF4007F2F9C /* mp3_encoder.cpp */,
+				187C95FF27ED9BF4007F2F9C /* mp3_encoder.hpp */,
+				187C95FD27ED9BF4007F2F9C /* VideoPlayDemo-Bridging-Header.h */,
+				1888223B27EEC3D400E8FA01 /* Test.h */,
+				1888223C27EEC3D400E8FA01 /* Test.m */,
+				1888223E27EEC71500E8FA01 /* AudioUnitHelper.swift */,
 			);
 			path = VideoPlayDemo;
 			sourceTree = "<group>";
@@ -132,6 +152,39 @@
 				1860FFB227DEDA440035ACF2 /* VideoCacheFileManager.swift */,
 			);
 			path = AssertLoad;
+			sourceTree = "<group>";
+		};
+		187C95F627ED9BA9007F2F9C /* fat-lame */ = {
+			isa = PBXGroup;
+			children = (
+				187C95F727ED9BA9007F2F9C /* include */,
+				187C95FA27ED9BA9007F2F9C /* lib */,
+			);
+			path = "fat-lame";
+			sourceTree = "<group>";
+		};
+		187C95F727ED9BA9007F2F9C /* include */ = {
+			isa = PBXGroup;
+			children = (
+				187C95F827ED9BA9007F2F9C /* lame */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		187C95F827ED9BA9007F2F9C /* lame */ = {
+			isa = PBXGroup;
+			children = (
+				187C95F927ED9BA9007F2F9C /* lame.h */,
+			);
+			path = lame;
+			sourceTree = "<group>";
+		};
+		187C95FA27ED9BA9007F2F9C /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				187C95FB27ED9BA9007F2F9C /* libmp3lame.a */,
+			);
+			path = lib;
 			sourceTree = "<group>";
 		};
 		A9D114D32230A331CAC70293 /* Frameworks */ = {
@@ -186,6 +239,7 @@
 				TargetAttributes = {
 					1860FF9027DED9420035ACF2 = {
 						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1320;
 					};
 				};
 			};
@@ -271,6 +325,8 @@
 				1860FF9927DED9420035ACF2 /* ViewController.swift in Sources */,
 				1860FFB927DEDA440035ACF2 /* AssertLoadExtensions.swift in Sources */,
 				1860FFB627DEDA440035ACF2 /* CustomPlayViewController.swift in Sources */,
+				1888223F27EEC71500E8FA01 /* AudioUnitHelper.swift in Sources */,
+				1888223D27EEC3D400E8FA01 /* Test.m in Sources */,
 				1860FFB827DEDA440035ACF2 /* AssertDownloader.swift in Sources */,
 				1860FFBA27DEDA440035ACF2 /* AssetResourceLoaderDelegate.swift in Sources */,
 				1860FFBF27DEE2240035ACF2 /* UIImageView+VideoFirstImage.swift in Sources */,
@@ -282,6 +338,7 @@
 				1860FFB427DEDA440035ACF2 /* PlayView.swift in Sources */,
 				1860FF9727DED9420035ACF2 /* SceneDelegate.swift in Sources */,
 				1860FFB727DEDA440035ACF2 /* PlayControlView.swift in Sources */,
+				187C960027ED9BF4007F2F9C /* mp3_encoder.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +486,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5KB58A6G2C;
@@ -443,10 +501,16 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/VideoPlayDemo/fat-lame/lib",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ifeng-tech.ddd.VideoPlayDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "VideoPlayDemo/VideoPlayDemo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -458,6 +522,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5KB58A6G2C;
@@ -472,10 +537,15 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/VideoPlayDemo/fat-lame/lib",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ifeng-tech.ddd.VideoPlayDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "VideoPlayDemo/VideoPlayDemo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

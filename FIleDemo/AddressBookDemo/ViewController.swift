@@ -16,7 +16,6 @@ struct ValueWrapper<T> {
             valueObserver?(value)
         }
     }
-    
     init (value:T) {
         self.value = value
     }

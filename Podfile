@@ -31,7 +31,8 @@ abstract_target 'ComponentProject' do
   
   target 'VideoPlayDemo' do
     project 'VideoPlayDemo/VideoPlayDemo.xcodeproj'
-
+    pod 'PLPlayerKit'
+    
   end
   
   target 'BuglyDemo' do

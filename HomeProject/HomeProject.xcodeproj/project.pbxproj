@@ -13,6 +13,8 @@
 		18771BEF27B500D700148E60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18771BED27B500D700148E60 /* Main.storyboard */; };
 		18771BF127B500D800148E60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18771BF027B500D800148E60 /* Assets.xcassets */; };
 		18771BF427B500D800148E60 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18771BF227B500D800148E60 /* LaunchScreen.storyboard */; };
+		18894DA727E597B7000F6A0F /* ListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18894DA627E597B7000F6A0F /* ListModel.swift */; };
+		18894DA927E5984E000F6A0F /* WeChatSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18894DA827E5984E000F6A0F /* WeChatSessionViewController.swift */; };
 		18DC54E527B50D70000E45C7 /* HomeComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 18DC54E427B50D70000E45C7 /* HomeComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		18DC54E827B50D70000E45C7 /* HomeComponent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18DC54E227B50D70000E45C7 /* HomeComponent.framework */; };
 		18DC54E927B50D70000E45C7 /* HomeComponent.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 18DC54E227B50D70000E45C7 /* HomeComponent.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -55,6 +57,8 @@
 		18771BF027B500D800148E60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18771BF327B500D800148E60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18771BF527B500D800148E60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18894DA627E597B7000F6A0F /* ListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListModel.swift; sourceTree = "<group>"; };
+		18894DA827E5984E000F6A0F /* WeChatSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeChatSessionViewController.swift; sourceTree = "<group>"; };
 		18DC54E227B50D70000E45C7 /* HomeComponent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HomeComponent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		18DC54E427B50D70000E45C7 /* HomeComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeComponent.h; sourceTree = "<group>"; };
 		202B3207CAEE81F337876CE2 /* Pods-myTest-HomeProject-HomeComponent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-myTest-HomeProject-HomeComponent.release.xcconfig"; path = "Target Support Files/Pods-myTest-HomeProject-HomeComponent/Pods-myTest-HomeProject-HomeComponent.release.xcconfig"; sourceTree = "<group>"; };
@@ -116,6 +120,7 @@
 		18771BE627B500D700148E60 /* HomeProject */ = {
 			isa = PBXGroup;
 			children = (
+				18894DA527E59724000F6A0F /* WeChatSession */,
 				18771BE727B500D700148E60 /* AppDelegate.swift */,
 				18771BE927B500D700148E60 /* SceneDelegate.swift */,
 				18771BEB27B500D700148E60 /* ViewController.swift */,
@@ -123,8 +128,17 @@
 				18771BF027B500D800148E60 /* Assets.xcassets */,
 				18771BF227B500D800148E60 /* LaunchScreen.storyboard */,
 				18771BF527B500D800148E60 /* Info.plist */,
+				18894DA627E597B7000F6A0F /* ListModel.swift */,
 			);
 			path = HomeProject;
+			sourceTree = "<group>";
+		};
+		18894DA527E59724000F6A0F /* WeChatSession */ = {
+			isa = PBXGroup;
+			children = (
+				18894DA827E5984E000F6A0F /* WeChatSessionViewController.swift */,
+			);
+			path = WeChatSession;
 			sourceTree = "<group>";
 		};
 		18DC54E327B50D70000E45C7 /* HomeComponent */ = {
@@ -345,8 +359,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				18771BEC27B500D700148E60 /* ViewController.swift in Sources */,
+				18894DA927E5984E000F6A0F /* WeChatSessionViewController.swift in Sources */,
 				18771BE827B500D700148E60 /* AppDelegate.swift in Sources */,
 				18771BEA27B500D700148E60 /* SceneDelegate.swift in Sources */,
+				18894DA727E597B7000F6A0F /* ListModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

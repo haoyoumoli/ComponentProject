@@ -8,7 +8,7 @@
 import Foundation
 import OpenGLES
 /**
- 1.先在缓冲区绘制问题
+ 1.先在缓冲区绘制纹理
  2.再将纹理拷贝到制定的帧缓冲区矩形区域,帧缓冲区的左下角多表为(0,0)
  */
 class MRTDemo:DemoProtocol {
@@ -99,7 +99,7 @@ class MRTDemo:DemoProtocol {
                           0, 0, GLsizei(width / 2) ,  GLsizei(height / 2), GLbitfield(GL_COLOR_BUFFER_BIT), GLenum(GL_LINEAR))
         
         // Copy the output green buffer to lower right quadrant
-         glReadBuffer(attachments[1])
+        glReadBuffer(attachments[1])
         glBlitFramebuffer(0, 0, textureWidth, textureHeight,
                           GLsizei(width / 2), 0, GLsizei(width), GLsizei(height / 2),
                           GLbitfield(GL_COLOR_BUFFER_BIT), GLenum(GL_LINEAR))
