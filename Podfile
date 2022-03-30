@@ -4,9 +4,6 @@ def common_pods
   # layout
   pod 'SnapKit'
   
-  # video play
-  pod 'JPVideoPlayer', '~> 3.1.1'
-  
   # image load
   pod 'SDWebImage'
 end
@@ -32,6 +29,8 @@ abstract_target 'ComponentProject' do
   target 'VideoPlayDemo' do
     project 'VideoPlayDemo/VideoPlayDemo.xcodeproj'
     pod 'PLPlayerKit'
+    # video play
+    pod 'JPVideoPlayer', '~> 3.1.1'
     
   end
   
@@ -40,6 +39,13 @@ abstract_target 'ComponentProject' do
   pod 'Bugly'
   pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :tag => '7.10.2'
   # pod 'BuglyHotfix'
+  end
+  
+  target 'Live' do
+    project 'Live/Live.xcodeproj'
+  common_pods
+  pod 'GPUImage'
+  
   end
   
 end

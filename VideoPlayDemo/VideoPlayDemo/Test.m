@@ -7,6 +7,10 @@
 
 #import "Test.h"
 
+enum {
+    aaa = 0x00000001,
+    bbb = 'rgb'
+};
 
 typedef struct {
     char *name;
