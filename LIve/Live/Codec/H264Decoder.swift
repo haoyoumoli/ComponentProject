@@ -10,9 +10,10 @@ import VideoToolbox
 import AVFoundation
 
 protocol H264DecoderDelegate:AnyObject {
-    func H264Decoder(_ decoder:H264Decoder,didDecompress pixelBuffer:CVImageBuffer)
+    func H264Decoder(_ decoder:H264Decoder,didDecompress pixelBuffer:CVImageBuffer, sampleBuffer:CMSampleBuffer )
 }
 
+//MARK: -
 class H264Decoder {
     
     weak
@@ -53,74 +54,65 @@ class H264Decoder {
 extension H264Decoder {
     
     func decode(naluData:Data) {
+
+        //多进行了一次拷贝
         let frameSize = UInt32(naluData.count)
         let frame = UnsafeMutablePointer<UInt8>.allocate(capacity: naluData.count)
         naluData.copyBytes(to: frame, count: naluData.count)
-        
+
+        defer {
+            frame.deinitialize(count: Int(frameSize))
+            frame.deallocate()
+        }
         //let frame = p.baseAddress!.bindMemory(to: UInt8.self, capacity: naluData.count)
-        
-         // frame的前4位是NALU数据的开始码，也就是00 00 00 01，第5个字节是表示数据类型，转为10进制后，7是sps,8是pps,5是IDR（I帧）信息
-         let naluType = (frame[4] & 0x1F)
-         //   0x12345678 =  78 56 34 12
-         // 将NALU的开始码替换成NALU的长度信息
-        
-         //https://blog.csdn.net/chenchong_219/article/details/37990541
-         var nalSize = frameSize - 4
-//         frame[0] = UInt8(nalSize & 0x000000ff)
-//         frame[1] = UInt8((nalSize & 0x0000ff00) >> 8)
-//         frame[2] = UInt8((nalSize & 0x00ff0000) >> 16)
-//         frame[3] = UInt8((nalSize & 0xff000000) >> 24)
-        
-//        withUnsafeBytes(of: &nalSize) { p in
-//            let bytesPointer = p.baseAddress!.bindMemory(to: UInt8.self, capacity: MemoryLayout<UInt32>.stride)
-//            frame[0] = bytesPointer[0]
-//            frame[1] = bytesPointer[1]
-//            frame[2] = bytesPointer[2]
-//            frame[3] = bytesPointer[3]
-//        }
-        
+
+        // frame的前4位是NALU数据的开始码，也就是00 00 00 01，第5个字节是表示数据类型，转为10进制后，7是sps,8是pps,5是IDR（I帧）信息
+        let naluType = (frame[4] & 0x1F)
+       
+        // 将NALU的开始码替换成NALU的长度信息
+        //https://blog.csdn.net/chenchong_219/article/details/37990541
+        let nalSize = frameSize - 4
+        //0x12345678 的内存布局是  78 56 34 12,小端模式反着取
         frame[0] =  UInt8((nalSize & 0xff000000) >> 24)
         frame[1] =  UInt8((nalSize & 0x00ff0000) >> 16)
         frame[2] =  UInt8((nalSize & 0x0000ff00) >> 8)
         frame[3] =  UInt8(nalSize & 0x000000ff)
-         
-         switch naluType {
-             //I帧
-         case 0x05:
-             debugPrint("解码I帧")
-             if prepareSession() {
-                 decode(frame: frame, frameSize: frameSize)
-             }
-             //SPS
-         case 0x07:
-             debugPrint("解码SPS")
-             spsSize = Int(frameSize - 4)
-             spsDataPointer?.deallocate()
-             let pointer = UnsafeMutablePointer<UInt8>.allocate(capacity: spsSize)
-             Data.init(bytes: frame + 4, count: spsSize)
-                 .copyBytes(to: pointer, count: spsSize)
-             spsDataPointer = UnsafePointer<UInt8>(pointer)
-             //PPS
-         case 0x08:
-             debugPrint("解码PPS")
-             ppsSize = Int(frameSize - 4)
-             ppsDataPointer?.deallocate()
-             let pointer = UnsafeMutablePointer<UInt8>.allocate(capacity: spsSize)
-             Data.init(bytes: frame + 4, count: spsSize)
-                 .copyBytes(to: pointer, count: spsSize)
-             ppsDataPointer = UnsafePointer<UInt8>(pointer)
-             // B帧或者P帧
-         default :
-             debugPrint("解码B帧或者P帧")
-             if prepareSession() {
-                 decode(frame: frame, frameSize: frameSize)
-             }
-         }
-        
-        
+
+        switch naluType {
+            //I帧
+        case 0x05:
+            if prepareSession() {
+                debugPrint("解码I帧")
+                decode(frame: frame, frameSize: frameSize)
+            }
+            //SPS
+        case 0x07:
+            debugPrint("解码SPS")
+            spsSize = Int(frameSize - 4)
+            //释放旧数据
+            spsDataPointer?.deallocate()
+            let pointer = UnsafeMutablePointer<UInt8>.allocate(capacity: spsSize)
+            memcpy(pointer, frame + 4, spsSize)
+            spsDataPointer = UnsafePointer<UInt8>(pointer)
+            //PPS
+        case 0x08:
+            debugPrint("解码PPS")
+            ppsSize = Int(frameSize - 4)
+            //释放旧数据
+            ppsDataPointer?.deallocate()
+            let pointer = UnsafeMutablePointer<UInt8>.allocate(capacity: ppsSize)
+            memcpy(pointer, frame + 4, ppsSize)
+            ppsDataPointer = UnsafePointer<UInt8>(pointer)
+
+            // B帧或者P帧
+        default :
+            if prepareSession() {
+                debugPrint("解码B帧或者P帧")
+                decode(frame: frame, frameSize: frameSize)
+            }
+        }
     }
 }
-
 
 //MARK: - private
 private
@@ -153,7 +145,7 @@ extension H264Decoder {
         
         //解码CMSampleBuffer
         let status =
-            VTDecompressionSessionDecodeFrame(session!, sampleBuffer: sampleBuffer!, flags: [], frameRefcon: nil, infoFlagsOut: &flagOut)
+        VTDecompressionSessionDecodeFrame(session!, sampleBuffer: sampleBuffer!, flags: [], frameRefcon: nil, infoFlagsOut: &flagOut)
         if status == noErr {
             debugPrint("VTDecompressionSessionDecodeFrame 成功")
         } else if status == kVTInvalidSessionErr {
@@ -175,7 +167,7 @@ extension H264Decoder {
         
         var parameterSetPointers = [spsP,ppsP]
         var parameterSetSizesPointer = [spsSize,ppsSize]
-       
+        
         guard CMVideoFormatDescriptionCreateFromH264ParameterSets(allocator: kCFAllocatorDefault, parameterSetCount: 2, parameterSetPointers: &parameterSetPointers, parameterSetSizes: &parameterSetSizesPointer, nalUnitHeaderLength: 4, formatDescriptionOut: &decoderFormatDescription) == noErr,
               decoderFormatDescription != nil
         else {
@@ -215,11 +207,11 @@ extension H264Decoder {
         }
         
         //设置解码线程数量
-//        guard VTSessionSetProperty(session!, key: kVTDecompressionPropertyKey_ThreadCount, value: NSNumber(value: 1)) == noErr else {
-//            debugPrint("设置解码线程数量失败")
-//            return false
-//        }
-    
+        //        guard VTSessionSetProperty(session!, key: kVTDecompressionPropertyKey_ThreadCount, value: NSNumber(value: 1)) == noErr else {
+        //            debugPrint("设置解码线程数量失败")
+        //            return false
+        //        }
+        
         //开启实时解码
         guard
             VTSessionSetProperty(session!, key: kVTDecompressionPropertyKey_RealTime, value: kCFBooleanTrue) == noErr else {
@@ -250,24 +242,8 @@ func funcVTDecompressionOutputCallback(
     presentationTimeStamp: CMTime,
     presentationDuration: CMTime)
 -> Void {
-    if status == kVTVideoDecoderAuthorizationErr {
-        debugPrint("kVTVideoDecoderAuthorizationErr")
-    } else if status == kVTVideoDecoderBadDataErr {
-        debugPrint("kVTVideoDecoderBadDataErr")
-    } else if status == kVTVideoDecoderMalfunctionErr {
-        debugPrint("kVTVideoDecoderMalfunctionErr")
-    } else if status == kVTVideoDecoderNotAvailableNowErr {
-        debugPrint("kVTVideoDecoderNotAvailableNowErr")
-    } else if status == kVTVideoDecoderUnsupportedDataFormatErr {
-        debugPrint("kVTVideoDecoderUnsupportedDataFormatErr")
-    } else if status == kVTVideoEncoderAuthorizationErr {
-        debugPrint("kVTVideoEncoderAuthorizationErr")
-    } else if status == kVTVideoEncoderMalfunctionErr {
-        debugPrint("kVTVideoEncoderMalfunctionErr")
-    } else if status == kVTVideoEncoderNotAvailableNowErr {
-        debugPrint("kVTVideoEncoderNotAvailableNowErr")
-    }
     
+    status.debugPrint()
     guard
         status == noErr,
         let dopRefcon = decompressionOutputRefCon,
@@ -278,6 +254,26 @@ func funcVTDecompressionOutputCallback(
     }
     
     let decoder = unsafeBitCast(dopRefcon, to: H264Decoder.self)
-
-    decoder.delegate?.H264Decoder(decoder, didDecompress: imgBuf)
+    
+    var formatDesc: CMVideoFormatDescription? = nil
+    
+    
+    guard
+        CMVideoFormatDescriptionCreateForImageBuffer(allocator: kCFAllocatorDefault, imageBuffer: imgBuf, formatDescriptionOut: &formatDesc) == noErr,
+        formatDesc != nil
+    else {
+        debugPrint("CMVideoFormatDescriptionCreateForImageBuffer failed")
+        return
+    }
+    
+    var sampleBuffer:CMSampleBuffer? = nil
+    var smapleTimgInfo = CMSampleTimingInfo()
+    smapleTimgInfo.presentationTimeStamp = presentationTimeStamp
+    guard CMSampleBufferCreateReadyWithImageBuffer(allocator:  kCFAllocatorDefault, imageBuffer: imgBuf, formatDescription: formatDesc!, sampleTiming: &smapleTimgInfo, sampleBufferOut: &sampleBuffer) == noErr,
+          sampleBuffer != nil
+    else  {
+        debugPrint("CMVideoFormatDescriptionCreateForImageBuffer failed")
+        return
+    }
+    decoder.delegate?.H264Decoder(decoder, didDecompress: imgBuf,sampleBuffer: sampleBuffer!)
 }

@@ -105,7 +105,6 @@ class VideoEncoder {
             }
         
         
-        
         // h264 profile, 直播一般使用baseline，可减少由于b帧带来的延时
        guard VTSessionSetProperty(session, key: kVTCompressionPropertyKey_ProfileLevel, value: kVTProfileLevel_H264_Baseline_AutoLevel) == noErr else {
             debugPrint("设置h264基线失败")
@@ -186,6 +185,7 @@ class VideoEncoder {
             }
             var timeNumber = NSNumber.init(value: timeStamp)
             var flags:VTEncodeInfoFlags!
+            
             
             if VTCompressionSessionEncodeFrame(session, imageBuffer: imageBuffer,
                                                   presentationTimeStamp: pts,

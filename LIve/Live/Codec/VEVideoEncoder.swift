@@ -14,6 +14,7 @@ protocol VEVideoEncoderDelegate:AnyObject {
     func VEVideoEncoder(_ encoder:VEVideoEncoder,didEncodedData data:Data, isKeyFrame:Bool)
 }
 
+//MARK: - 
 class VEVideoEncoder {
     
     struct EncodeParam {
@@ -33,7 +34,7 @@ class VEVideoEncoder {
         ///  编码类型
         var encodeType:CMVideoCodecType = kCMVideoCodecType_H264
         /// 码率 单位kbps
-        var bitRate:Int32 = 1024
+        var bitRate:Int32 = 1024 * 512
         /// 帧率 单位fps,缺省为15fps
         var frameRate:Int32 = 15
         /// 最大I帧间隔,单位秒
@@ -89,6 +90,7 @@ extension VEVideoEncoder {
                 return false
             }
         
+        // 配置是否产生B帧
         guard
             VTSessionSetProperty(session!, key: kVTCompressionPropertyKey_AllowFrameReordering, value: encodeParam.allowFrameReordering ? kCFBooleanTrue : kCFBooleanFalse) == noErr else {
                 debugPrint("设置kVTCompressionPropertyKey_AllowFrameReordering失败")
@@ -109,11 +111,9 @@ extension VEVideoEncoder {
     
     
     func encodeSampleBuffer(_ buffer:CMSampleBuffer, forceKeyFrame:Bool) -> Bool  {
-        
         guard prepareSession() else {
             return false
         }
-
         let frameProperties = [
             kVTEncodeFrameOptionKey_ForceKeyFrame:NSNumber(value: forceKeyFrame)
         ] as? CFDictionary
@@ -121,6 +121,7 @@ extension VEVideoEncoder {
             let pixelBuffer = CMSampleBufferGetImageBuffer(buffer),
             VTCompressionSessionEncodeFrame(session!, imageBuffer: pixelBuffer, presentationTimeStamp: .invalid, duration: .invalid, frameProperties: frameProperties, sourceFrameRefcon: nil, infoFlagsOut: nil) == noErr
         else {
+            debugPrint("VTCompressionSessionEncodeFrame 失败")
             return false
         }
         return true
@@ -168,7 +169,6 @@ extension VEVideoEncoder {
     
     func getVTProfileLevel(_ profileLevel:EncodeParam.ProfileLevel) -> CFString {
         switch profileLevel {
-            
         case .auto:
             return kVTProfileLevel_H264_Baseline_AutoLevel
         case .bp:
@@ -203,20 +203,24 @@ func  VTCompressSessionCallback(outputCallbackRefCon:UnsafeMutableRawPointer?, s
         //不是被丢弃的帧
         infoFlags.contains(VTEncodeInfoFlags.frameDropped) == false,
         let sampleAttachmentsArray = CMSampleBufferGetSampleAttachmentsArray(smplbuf, createIfNecessary: true)
-    else { return }
-   
+    else {
+        debugPrint("VTCompressSessionCallback error")
+        return
+    }
  
     let encoder = unsafeBitCast(outputCallbackRefCon!, to: VEVideoEncoder.self)
     
     let cfdic = unsafeBitCast(CFArrayGetValueAtIndex(sampleAttachmentsArray, 0), to: CFDictionary.self)
     
-   let isKeyFrame = CFDictionaryContainsKey(cfdic, Unmanaged.passUnretained(kCMSampleAttachmentKey_NotSync).toOpaque())
+
+   let isKeyFrame = CFDictionaryContainsKey(cfdic, Unmanaged.passUnretained(kCMSampleAttachmentKey_NotSync).toOpaque()) == false
     
-    if isKeyFrame {
+    if
+        isKeyFrame,
+        let formatDesc = CMSampleBufferGetFormatDescription(smplbuf)
+    {
         debugPrint("编码了关键帧")
-        guard let formatDesc = CMSampleBufferGetFormatDescription(smplbuf) else {
-            return
-        }
+      
         var spsData:UnsafePointer<UInt8>? = nil
         var spsSize:Int = 0
         var spsCount:Int = 0
@@ -246,15 +250,16 @@ func  VTCompressSessionCallback(outputCallbackRefCon:UnsafeMutableRawPointer?, s
             return
         }
     
-    var bufferOffSet = 0
+    var bufferOffSet:size_t = 0
     let avcHeaderLength = 4
-    while bufferOffSet < totalLength - avcHeaderLength {
+    while bufferOffSet < (totalLength - avcHeaderLength) {
         //获取NAL单元长度
         var nalunitLength:UInt32 = 0
         memcpy(&nalunitLength, dataPointer! + bufferOffSet, avcHeaderLength)
+        
         nalunitLength = CFSwapInt32BigToHost(nalunitLength)
         
-        let frameData = Data.init(bytes: dataPointer! + bufferOffSet + avcHeaderLength, count: Int(nalunitLength))
+        let frameData = Data.init(bytes: dataPointer! + (bufferOffSet + avcHeaderLength), count: Int(nalunitLength))
         encoder.notifyData(data: frameData,isKeyFrame:isKeyFrame)
         bufferOffSet += (avcHeaderLength + Int(nalunitLength))
     }

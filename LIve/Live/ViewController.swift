@@ -14,6 +14,39 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+         bytesCopyDemo()
+        // Do any additional setup after loading the view.
+    }
+
+    func bytesCopyDemo() {
+        
+        let buffer:Data = Data.init([0x12,0x34,0x56,0x78])
+        let bufferPointer = UnsafeMutablePointer<UInt8>.allocate(capacity: buffer.count)
+        defer {
+            bufferPointer.deallocate()
+        }
+        buffer.copyBytes(to: bufferPointer, count: buffer.count)
+        
+        var data23 = Data.init(bytes: bufferPointer + 2 , count: buffer.count - 2)
+        
+        data23.withUnsafeMutableBytes { pointer in
+            //直接操作Data中的数据
+            let p = pointer.baseAddress!.bindMemory(to: UInt8.self, capacity: 2)
+            p[0] = 0xff
+        }
+       
+        
+        func bytesStringsFrom(_ data:Data) -> [String] {
+            return data.map({String.init(format: "%x", $0)})
+        }
+        
+        debugPrint(bytesStringsFrom(buffer))
+        debugPrint(bytesStringsFrom(data23))
+        
+    }
+
+    
+    func memoryLayoutOfUInt32Demo() {
         debugPrint("注意打印结果差别")
         var value32:UInt32 = 0x12345678 //78 56 34 12
         
@@ -38,10 +71,8 @@ class ViewController: UIViewController {
         let b2 = UInt8((value32 & 0x0000ff00) >> 8)
         let b3 = UInt8((value32 & 0x000000ff))
         debugPrint(NSString(format: "%x,%x,%x,%x", b0,b1,b2,b3))
-        // Do any additional setup after loading the view.
     }
-
-
+    
     func dataAndPointerDemo() {
         /**
          0xf1 = 241 = 1111_1000
@@ -88,9 +119,6 @@ class ViewController: UIViewController {
             }
         }
        
-        
-       
-     
         for i in 0..<datas.count {
             debugPrint(pointer[i])
         }

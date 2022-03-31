@@ -31,7 +31,8 @@ class CaptureViewController: UIViewController {
     
     lazy private(set)
     var h264Capture: GPUImageVideoCamera? = {
-        let result = GPUImageVideoCamera.init(sessionPreset: AVCaptureSession.Preset.high.rawValue, cameraPosition: .front)
+        let result = GPUImageVideoCamera
+            .init(sessionPreset: AVCaptureSession.Preset.high.rawValue, cameraPosition: .front)
         result?.outputImageOrientation = .portrait
         result?.delegate = self
         return result
@@ -57,7 +58,7 @@ class CaptureViewController: UIViewController {
         let result = UIButton.init(type: .system)
         result.backgroundColor = UIColor.gray
         result.setTitle("操作", for: .normal)
-        result.addTarget(self, action: #selector(actionsButtonTouched(_:)), for: .touchUpInside)
+        result.addTarget(self,action: #selector(actionsButtonTouched(_:)), for: .touchUpInside)
         view.addSubview(result)
         return result
     }()
@@ -66,7 +67,14 @@ class CaptureViewController: UIViewController {
     var currentFilter:GPUImageFilter? = nil
     
     lazy private(set)
-    var videoEncoder = Live.VEVideoEncoder.init(encodeParam: .init())
+    var videoEncoder:VEVideoEncoder =  {
+        var encodeParam = Live.VEVideoEncoder.EncodeParam()
+        encodeParam.encodeWidth = 1280
+        encodeParam.encodeHeight = 720
+        encodeParam.bitRate = 1024 * 1024
+        let result = Live.VEVideoEncoder(encodeParam: encodeParam)
+        return result
+    }()
     
     lazy private(set)
     var h264Decoder = Live.H264Decoder.init()
@@ -75,7 +83,6 @@ class CaptureViewController: UIViewController {
 
 //MARK: - System
 extension CaptureViewController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -85,20 +92,16 @@ extension CaptureViewController {
 extension CaptureViewController:GPUImageVideoCameraDelegate {
     func willOutputSampleBuffer(_ sampleBuffer: CMSampleBuffer!) {
 //        if currentFilter != nil {
-//
-//        } else  {
-//          //没有视频滤镜,直接处理buffer
-//            guard let pixelBufferRef = currentFilter?.renderTarget else {
+//            guard let pixelBufferRef = currentFilter!.renderTarget else {
 //                return
 //            }
-//
+//        } else  {
+//          //没有视频滤镜,直接处理buffer
 //        }
         
         if !videoEncoder.encodeSampleBuffer(sampleBuffer, forceKeyFrame: false) {
             debugPrint("视频编码失败")
         }
-        
-       
     }
 }
 
@@ -112,14 +115,21 @@ extension CaptureViewController : VEVideoEncoderDelegate {
 
 //MARK: - H264DecoderDelegate
 extension CaptureViewController: H264DecoderDelegate {
-    func H264Decoder(_ decoder: H264Decoder, didDecompress pixelBuffer: CVImageBuffer) {
+    func H264Decoder(_ decoder:H264Decoder,didDecompress pixelBuffer:CVImageBuffer, sampleBuffer:CMSampleBuffer) {
         
-       // h264Capture?.processVideoSampleBuffer(sampleBuffer)
-        let image = pixelBuffer.toImage()
+//        //只用cpu将pixelbuffer 转化为UIImage,不推荐,这样非常耗费性能,要从GPU显存中拷贝数据到内存由
+//        //cpu处理
+//        guard let image = pixelBuffer.toImage3() else {
+//            debugPrint("image == nil")
+//            return
+//        }
+//
+//        DispatchQueue.main.async {
+//            self.pixelImageView.image = image
+//        }
         
-        DispatchQueue.main.async {
-            self.pixelImageView.image = image
-        }
+        //使用GPUImage显示解码后的h264数据
+        h264Capture?.processVideoSampleBuffer(sampleBuffer)
     }
 }
 
@@ -156,20 +166,19 @@ private extension CaptureViewController {
             capturePreview.snp.makeConstraints { make in
                 make.left.top.equalToSuperview()
                 make.right.equalTo(h264Preview.snp.left).offset(-5.0)
-                make.bottom.equalTo(actionsButton)
+                make.bottom.equalTo(actionsButton.snp.top)
             }
             
             h264Preview.backgroundColor = .red
             h264Preview.snp.makeConstraints { make in
                 make.top.right.equalToSuperview()
-                make.bottom.equalTo(actionsButton)
+                make.bottom.equalTo(actionsButton.snp.top)
                 make.width.equalTo(capturePreview)
             }
-            
-            
-            pixelImageView.snp.makeConstraints { make in
-                make.edges.equalTo(h264Preview)
-            }
+
+//            pixelImageView.snp.makeConstraints { make in
+//                make.edges.equalTo(h264Preview)
+//            }
             
             actionsButton.snp.makeConstraints { make in
                 make.height.equalTo(50.0)
