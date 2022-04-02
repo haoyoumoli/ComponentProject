@@ -9,13 +9,12 @@ import Foundation
 import CoreMedia
 import VideoToolbox
 
-protocol VEVideoEncoderDelegate:AnyObject {
-    
-    func VEVideoEncoder(_ encoder:VEVideoEncoder,didEncodedData data:Data, isKeyFrame:Bool)
+protocol H264EncoderDelegate:AnyObject {
+    func H264Encoder(_ encoder:H264Encoder,didEncodedData data:Data, isKeyFrame:Bool)
 }
 
 //MARK: - 
-class VEVideoEncoder {
+class H264Encoder {
     
     struct EncodeParam {
         
@@ -47,7 +46,7 @@ class VEVideoEncoder {
     let encodeParam:EncodeParam
     
     weak
-    var delegate:VEVideoEncoderDelegate? = nil
+    var delegate:H264EncoderDelegate? = nil
     
     init(encodeParam:EncodeParam) {
         self.encodeParam = encodeParam
@@ -63,7 +62,7 @@ class VEVideoEncoder {
 
 
 //MARK: - interface
-extension VEVideoEncoder {
+extension H264Encoder {
     func prepareSession() -> Bool {
         if session != nil {
             return true
@@ -137,7 +136,7 @@ extension VEVideoEncoder {
 
 //MARK: -
 private
-extension VEVideoEncoder {
+extension H264Encoder {
     func adjustBitRate(_ rate:Int32) -> Bool {
         guard session != nil,rate > 0 else {
             return false
@@ -186,7 +185,7 @@ extension VEVideoEncoder {
         var resultData = Data()
         resultData.append(headerData)
         resultData.append(data)
-        delegate?.VEVideoEncoder(self, didEncodedData: resultData,isKeyFrame: isKeyFrame)
+        delegate?.H264Encoder(self, didEncodedData: resultData,isKeyFrame: isKeyFrame)
     }
     
 }
@@ -208,7 +207,7 @@ func  VTCompressSessionCallback(outputCallbackRefCon:UnsafeMutableRawPointer?, s
         return
     }
  
-    let encoder = unsafeBitCast(outputCallbackRefCon!, to: VEVideoEncoder.self)
+    let encoder = unsafeBitCast(outputCallbackRefCon!, to: H264Encoder.self)
     
     let cfdic = unsafeBitCast(CFArrayGetValueAtIndex(sampleAttachmentsArray, 0), to: CFDictionary.self)
     

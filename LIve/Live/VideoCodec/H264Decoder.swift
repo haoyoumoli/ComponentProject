@@ -73,10 +73,10 @@ extension H264Decoder {
         //https://blog.csdn.net/chenchong_219/article/details/37990541
         let nalSize = frameSize - 4
         //0x12345678 的内存布局是  78 56 34 12,小端模式反着取
-        frame[0] =  UInt8((nalSize & 0xff000000) >> 24)
-        frame[1] =  UInt8((nalSize & 0x00ff0000) >> 16)
-        frame[2] =  UInt8((nalSize & 0x0000ff00) >> 8)
-        frame[3] =  UInt8(nalSize & 0x000000ff)
+        frame[0] = UInt8((nalSize & 0xff000000) >> 24)
+        frame[1] = UInt8((nalSize & 0x00ff0000) >> 16)
+        frame[2] = UInt8((nalSize & 0x0000ff00) >> 8)
+        frame[3] = UInt8(nalSize & 0x000000ff)
 
         switch naluType {
             //I帧

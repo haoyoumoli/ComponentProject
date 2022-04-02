@@ -67,17 +67,20 @@ class CaptureViewController: UIViewController {
     var currentFilter:GPUImageFilter? = nil
     
     lazy private(set)
-    var videoEncoder:VEVideoEncoder =  {
-        var encodeParam = Live.VEVideoEncoder.EncodeParam()
+    var videoEncoder:H264Encoder =  {
+        var encodeParam = Live.H264Encoder.EncodeParam()
         encodeParam.encodeWidth = 1280
         encodeParam.encodeHeight = 720
         encodeParam.bitRate = 1024 * 1024
-        let result = Live.VEVideoEncoder(encodeParam: encodeParam)
+        let result = Live.H264Encoder(encodeParam: encodeParam)
         return result
     }()
     
     lazy private(set)
     var h264Decoder = Live.H264Decoder.init()
+    
+    lazy private(set)
+    var audioProcessQueue = DispatchQueue.init(label: "CaptureViewController.audioProcessQueue")
 }
 
 
@@ -91,13 +94,13 @@ extension CaptureViewController {
 //MARK: - ActionsViewControllerDelegate
 extension CaptureViewController:GPUImageVideoCameraDelegate {
     func willOutputSampleBuffer(_ sampleBuffer: CMSampleBuffer!) {
-//        if currentFilter != nil {
-//            guard let pixelBufferRef = currentFilter!.renderTarget else {
-//                return
-//            }
-//        } else  {
-//          //没有视频滤镜,直接处理buffer
-//        }
+        //        if currentFilter != nil {
+        //            guard let pixelBufferRef = currentFilter!.renderTarget else {
+        //                return
+        //            }
+        //        } else  {
+        //          //没有视频滤镜,直接处理buffer
+        //        }
         
         if !videoEncoder.encodeSampleBuffer(sampleBuffer, forceKeyFrame: false) {
             debugPrint("视频编码失败")
@@ -106,8 +109,8 @@ extension CaptureViewController:GPUImageVideoCameraDelegate {
 }
 
 //MARK: - VEVideoEncoderDelegate
-extension CaptureViewController : VEVideoEncoderDelegate {
-    func VEVideoEncoder(_ encoder: VEVideoEncoder, didEncodedData data: Data, isKeyFrame: Bool) {
+extension CaptureViewController : H264EncoderDelegate {
+    func H264Encoder(_ encoder: H264Encoder, didEncodedData data: Data, isKeyFrame: Bool) {
         h264Decoder.decode(naluData: data)
     }
 }
@@ -117,16 +120,16 @@ extension CaptureViewController : VEVideoEncoderDelegate {
 extension CaptureViewController: H264DecoderDelegate {
     func H264Decoder(_ decoder:H264Decoder,didDecompress pixelBuffer:CVImageBuffer, sampleBuffer:CMSampleBuffer) {
         
-//        //只用cpu将pixelbuffer 转化为UIImage,不推荐,这样非常耗费性能,要从GPU显存中拷贝数据到内存由
-//        //cpu处理
-//        guard let image = pixelBuffer.toImage3() else {
-//            debugPrint("image == nil")
-//            return
-//        }
-//
-//        DispatchQueue.main.async {
-//            self.pixelImageView.image = image
-//        }
+        //        //只用cpu将pixelbuffer 转化为UIImage,不推荐,这样非常耗费性能,要从GPU显存中拷贝数据到内存由
+        //        //cpu处理
+        //        guard let image = pixelBuffer.toImage3() else {
+        //            debugPrint("image == nil")
+        //            return
+        //        }
+        //
+        //        DispatchQueue.main.async {
+        //            self.pixelImageView.image = image
+        //        }
         
         //使用GPUImage显示解码后的h264数据
         h264Capture?.processVideoSampleBuffer(sampleBuffer)
@@ -144,8 +147,13 @@ extension CaptureViewController:ActionsViewControllerDelegate {
             applyFilter(bilateralFilter)
         }
     }
-    
-    
+}
+
+//MARK: - AVCaptureAudioDataOutputSampleBufferDelegate
+extension CaptureViewController: AVCaptureAudioDataOutputSampleBufferDelegate {
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        debugPrint(#function)
+    }
 }
 
 //MARK: - Private
@@ -175,27 +183,46 @@ private extension CaptureViewController {
                 make.bottom.equalTo(actionsButton.snp.top)
                 make.width.equalTo(capturePreview)
             }
-
-//            pixelImageView.snp.makeConstraints { make in
-//                make.edges.equalTo(h264Preview)
-//            }
+            
+            //            pixelImageView.snp.makeConstraints { make in
+            //                make.edges.equalTo(h264Preview)
+            //            }
             
             actionsButton.snp.makeConstraints { make in
                 make.height.equalTo(50.0)
                 make.left.bottom.right.equalToSuperview()
             }
-            
-            //视频捕获输出到preview上
-            videoCamera?.addTarget(capturePreview)
-            //开始捕获
-            videoCamera?.startCapture()
-            
-            
+          
             h264Capture?.addTarget(h264Preview)
             
+            setupCapture()
+
             videoEncoder.delegate = self
             h264Decoder.delegate = self
         }
+    }
+    
+    func setupCapture() {
+        //视频捕获输出到preview上
+        videoCamera?.addTarget(capturePreview)
+        //添加音频捕获
+//        videoCamera?.captureSession.beginConfiguration()
+//        if
+//            let micophone = AVCaptureDevice.default(for: .audio),
+//            let audioInput = try? AVCaptureDeviceInput.init(device: micophone),
+//            videoCamera?.captureSession.canAddInput(audioInput) == true
+//        {
+//            let output = AVCaptureAudioDataOutput.init()
+//            output.setSampleBufferDelegate(self, queue: audioProcessQueue)
+//            if videoCamera?.captureSession.canAddOutput(output) == true {
+//                videoCamera?.captureSession.addInput(audioInput)
+//                videoCamera?.captureSession.addOutput(output)
+//                debugPrint("成功添加音频捕获")
+//            }
+//        }
+//        videoCamera?.captureSession.commitConfiguration()
+        //开始捕获
+        videoCamera?.startCapture()
     }
     
     @objc

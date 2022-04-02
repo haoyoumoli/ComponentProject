@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1851ABD827F2AC010029142F /* VEVideoEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851ABD727F2AC010029142F /* VEVideoEncoder.swift */; };
-		1851ABDA27F2E9220029142F /* H264Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851ABD927F2E9220029142F /* H264Decoder.swift */; };
+		1851ABD827F2AC010029142F /* H264Encoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1851ABD727F2AC010029142F /* H264Encoder.swift */; };
+		1863931227F6C9A700212622 /* AudioUnit+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1863931127F6C9A700212622 /* AudioUnit+Ext.swift */; };
+		186F25CD27F5894E004391D9 /* H264Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186F25CC27F5894E004391D9 /* H264Decoder.swift */; };
+		186F25D027F58A39004391D9 /* AACEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186F25CF27F58A39004391D9 /* AACEncoder.swift */; };
+		1887F5CA27F6FB51007109D4 /* VideoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1887F5C927F6FB51007109D4 /* VideoFrame.swift */; };
+		1887F5CC27F6FC70007109D4 /* AudioFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1887F5CB27F6FC70007109D4 /* AudioFrame.swift */; };
 		189A59A227F14A24006F4C4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189A59A127F14A24006F4C4F /* AppDelegate.swift */; };
 		189A59A427F14A24006F4C4F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189A59A327F14A24006F4C4F /* SceneDelegate.swift */; };
 		189A59A627F14A24006F4C4F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189A59A527F14A24006F4C4F /* ViewController.swift */; };
@@ -23,8 +27,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1851ABD727F2AC010029142F /* VEVideoEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VEVideoEncoder.swift; sourceTree = "<group>"; };
-		1851ABD927F2E9220029142F /* H264Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = H264Decoder.swift; path = ../../../Live/Live/Codec/H264Decoder.swift; sourceTree = "<group>"; };
+		1851ABD727F2AC010029142F /* H264Encoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = H264Encoder.swift; sourceTree = "<group>"; };
+		1863931127F6C9A700212622 /* AudioUnit+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AudioUnit+Ext.swift"; path = "../../Live/Live/AudioUnit+Ext.swift"; sourceTree = "<group>"; };
+		186F25CC27F5894E004391D9 /* H264Decoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = H264Decoder.swift; sourceTree = "<group>"; };
+		186F25CF27F58A39004391D9 /* AACEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AACEncoder.swift; sourceTree = "<group>"; };
+		1887F5C927F6FB51007109D4 /* VideoFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VideoFrame.swift; path = ../../../Live/Live/Frame/VideoFrame.swift; sourceTree = "<group>"; };
+		1887F5CB27F6FC70007109D4 /* AudioFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudioFrame.swift; path = ../../../Live/Live/Frame/AudioFrame.swift; sourceTree = "<group>"; };
 		189A599E27F14A24006F4C4F /* Live.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Live.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		189A59A127F14A24006F4C4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		189A59A327F14A24006F4C4F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -54,6 +62,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		186F25CE27F58A0B004391D9 /* AudioCodec */ = {
+			isa = PBXGroup;
+			children = (
+				186F25CF27F58A39004391D9 /* AACEncoder.swift */,
+			);
+			path = AudioCodec;
+			sourceTree = "<group>";
+		};
+		1887F5C627F6FA9B007109D4 /* Frame */ = {
+			isa = PBXGroup;
+			children = (
+				1887F5C927F6FB51007109D4 /* VideoFrame.swift */,
+				1887F5CB27F6FC70007109D4 /* AudioFrame.swift */,
+			);
+			path = Frame;
+			sourceTree = "<group>";
+		};
 		189A599527F14A24006F4C4F = {
 			isa = PBXGroup;
 			children = (
@@ -75,7 +100,9 @@
 		189A59A027F14A24006F4C4F /* Live */ = {
 			isa = PBXGroup;
 			children = (
-				189A59BB27F17B10006F4C4F /* Codec */,
+				1887F5C627F6FA9B007109D4 /* Frame */,
+				186F25CE27F58A0B004391D9 /* AudioCodec */,
+				189A59BB27F17B10006F4C4F /* VideoCodec */,
 				189A59B627F14AE8006F4C4F /* Capture */,
 				189A59A127F14A24006F4C4F /* AppDelegate.swift */,
 				189A59A327F14A24006F4C4F /* SceneDelegate.swift */,
@@ -85,6 +112,7 @@
 				189A59AC27F14A25006F4C4F /* LaunchScreen.storyboard */,
 				189A59AF27F14A25006F4C4F /* Info.plist */,
 				189E3E7C27F40A8E00FFEEA3 /* Helper.swift */,
+				1863931127F6C9A700212622 /* AudioUnit+Ext.swift */,
 			);
 			path = Live;
 			sourceTree = "<group>";
@@ -98,14 +126,14 @@
 			path = Capture;
 			sourceTree = "<group>";
 		};
-		189A59BB27F17B10006F4C4F /* Codec */ = {
+		189A59BB27F17B10006F4C4F /* VideoCodec */ = {
 			isa = PBXGroup;
 			children = (
 				189A59BD27F17B2F006F4C4F /* VideoEncoder.swift */,
-				1851ABD727F2AC010029142F /* VEVideoEncoder.swift */,
-				1851ABD927F2E9220029142F /* H264Decoder.swift */,
+				186F25CC27F5894E004391D9 /* H264Decoder.swift */,
+				1851ABD727F2AC010029142F /* H264Encoder.swift */,
 			);
-			path = Codec;
+			path = VideoCodec;
 			sourceTree = "<group>";
 		};
 		546CDF20400DA4AF3F8D8814 /* Pods */ = {
@@ -242,13 +270,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				189A59A627F14A24006F4C4F /* ViewController.swift in Sources */,
-				1851ABD827F2AC010029142F /* VEVideoEncoder.swift in Sources */,
+				1887F5CC27F6FC70007109D4 /* AudioFrame.swift in Sources */,
+				1851ABD827F2AC010029142F /* H264Encoder.swift in Sources */,
+				186F25D027F58A39004391D9 /* AACEncoder.swift in Sources */,
+				1863931227F6C9A700212622 /* AudioUnit+Ext.swift in Sources */,
+				186F25CD27F5894E004391D9 /* H264Decoder.swift in Sources */,
+				1887F5CA27F6FB51007109D4 /* VideoFrame.swift in Sources */,
 				189A59B827F14E47006F4C4F /* CaptureViewController.swift in Sources */,
 				189A59A227F14A24006F4C4F /* AppDelegate.swift in Sources */,
 				189A59BA27F15290006F4C4F /* ActionsViewController.swift in Sources */,
 				189E3E7D27F40A8E00FFEEA3 /* Helper.swift in Sources */,
 				189A59BE27F17B2F006F4C4F /* VideoEncoder.swift in Sources */,
-				1851ABDA27F2E9220029142F /* H264Decoder.swift in Sources */,
 				189A59A427F14A24006F4C4F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
