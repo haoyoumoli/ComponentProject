@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/apple/Downloads/ComponentProject/LIve/Live.xcodeproj">
+      location = "group:Live/Live.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:FIleDemo/FIleDemo.xcodeproj">
@@ -33,8 +33,5 @@
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Live/Live.xcodeproj">
    </FileRef>
 </Workspace>

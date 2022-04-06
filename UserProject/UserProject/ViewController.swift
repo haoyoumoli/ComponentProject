@@ -32,8 +32,6 @@ class ViewController: UIViewController {
     }
 
     
-    func aaa() -> [String] {
-        
-    }
+   
 }
 

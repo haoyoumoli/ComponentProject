@@ -11,6 +11,7 @@ import CoreAudio
 import CoreMedia
 import AudioToolbox
 import CoreFoundation
+import Darwin
 
 class AACEncoder {
     
@@ -164,6 +165,7 @@ extension AACEncoder {
         return originalBUfferSize
     }
     
+    
     /**
      *  Add ADTS header at the beginning of each and every AAC packet.
      *  This is needed as MediaCodec encoder generates a packet of raw
@@ -290,3 +292,5 @@ extension AACEncoder {
         return nil
     }
 }
+
+
