@@ -10,7 +10,6 @@ import HomeComponent
 import SnapKit
 import ModuleManager
 
-
 class ViewController: UIViewController {
     
     override func viewDidLoad() {

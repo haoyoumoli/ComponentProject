@@ -15,7 +15,7 @@
 		18933AFF27B5019D001FA6C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18933AFD27B5019D001FA6C4 /* Main.storyboard */; };
 		18933B0127B5019F001FA6C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18933B0027B5019F001FA6C4 /* Assets.xcassets */; };
 		18933B0427B5019F001FA6C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18933B0227B5019F001FA6C4 /* LaunchScreen.storyboard */; };
-		18DC54F127B50DEB000E45C7 /* HomeComponent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18DC54F027B50DEB000E45C7 /* HomeComponent.framework */; };
+		18C5A2112807EABB0054CB49 /* HomeComponent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C5A2102807EABB0054CB49 /* HomeComponent.framework */; };
 		6E1300C23F777FF130BF9F7A /* Pods_ComponentProject_MainProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB736A2888B5E18838B55270 /* Pods_ComponentProject_MainProject.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +30,7 @@
 		18933B0027B5019F001FA6C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18933B0327B5019F001FA6C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18933B0527B5019F001FA6C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18C5A2102807EABB0054CB49 /* HomeComponent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = HomeComponent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		18DC54F027B50DEB000E45C7 /* HomeComponent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = HomeComponent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EC6D0D75B7023C1A26E5F53 /* Pods-ComponentProject-MainProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComponentProject-MainProject.release.xcconfig"; path = "Target Support Files/Pods-ComponentProject-MainProject/Pods-ComponentProject-MainProject.release.xcconfig"; sourceTree = "<group>"; };
 		593E1AEE883D8A86FA90BE20 /* Pods-ComponentProject-MainProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComponentProject-MainProject.debug.xcconfig"; path = "Target Support Files/Pods-ComponentProject-MainProject/Pods-ComponentProject-MainProject.debug.xcconfig"; sourceTree = "<group>"; };
@@ -42,9 +43,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18C5A2112807EABB0054CB49 /* HomeComponent.framework in Frameworks */,
 				186D7E8327BB6EC100988641 /* UserSerivce.framework in Frameworks */,
 				186D7E8127BB6E8200988641 /* ModuleManager.framework in Frameworks */,
-				18DC54F127B50DEB000E45C7 /* HomeComponent.framework in Frameworks */,
 				6E1300C23F777FF130BF9F7A /* Pods_ComponentProject_MainProject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -87,6 +88,7 @@
 		733B551F8421B52D0B012E5B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18C5A2102807EABB0054CB49 /* HomeComponent.framework */,
 				186D7E8227BB6EC100988641 /* UserSerivce.framework */,
 				186D7E8027BB6E8200988641 /* ModuleManager.framework */,
 				18DC54F027B50DEB000E45C7 /* HomeComponent.framework */,

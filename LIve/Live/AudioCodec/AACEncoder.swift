@@ -112,13 +112,16 @@ extension AACEncoder {
             data.append(sf.asdtData(for: Int32(rawAAC.count)))
             data.append(rawAAC)
             
-            //flv编码音频头 44100 为0x12 0x10
-            var asc = Data(count: 2)
-            asc.withUnsafeMutableBytes { buf in
-                let pointer = buf.baseAddress!.bindMemory(to: UInt8.self, capacity: 2)
-                pointer[0] = 0x10 | ((4>>1) | 0x3)
-                pointer[1] = ((4 & 0x1) << 7) | ((1 & 0xf) << 3)
-            }
+            
+            
+//            //flv编码音频头 44100 为0x12 0x10
+//            var asc = Data(count: 2)
+//            asc.withUnsafeMutableBytes { buf in
+//                let pointer = buf.baseAddress!.bindMemory(to: UInt8.self, capacity: 2)
+//                pointer[0] = 0x10 | ((4>>1) | 0x3)
+//                pointer[1] = ((4 & 0x1) << 7) | ((1 & 0xf) << 3)
+//            }
+            
             
             sf.callbackQueue.async {
                 completion(data,nil)
@@ -154,7 +157,7 @@ extension AACEncoder {
     
     func copyPCMSamplesIntoBuffer(ioData:AudioBufferList) -> size_t {
         var ioData = ioData
-        var originalBUfferSize = pcmBufferSize
+        let originalBUfferSize = pcmBufferSize
         if originalBUfferSize == 0 {
             return 0
         }
@@ -207,6 +210,7 @@ extension AACEncoder {
         
         guard
             let bufferFormatDesc = CMSampleBufferGetFormatDescription(sampleBuffer),
+            //获取采样到的数据的格式描述
             let inAudioStreamBasicDesc = CMAudioFormatDescriptionGetStreamBasicDescription(bufferFormatDesc)
         else {
             debugPrint("prepareConverter failed")
@@ -274,11 +278,13 @@ extension AACEncoder {
         guard
             AudioFormatGetProperty(
                 kAudioFormatProperty_Encoders,
-                UInt32(MemoryLayout.stride(ofValue: encoderSepecifier)),&encoderSepecifier , &size, descriptions) == noErr else {
+                UInt32(MemoryLayout.stride(ofValue: encoderSepecifier)),
+                &encoderSepecifier ,
+                &size,
+                descriptions) == noErr else {
                     debugPrint("AudioFormatGetProperty failed")
                     return nil
                 }
-        
         for i in 0..<count {
             if type == descriptions[i].mSubType &&
                 fromManufacturer == descriptions[i].mManufacturer {

@@ -38,14 +38,19 @@ abstract_target 'ComponentProject' do
     project 'BuglyDemo/BuglyDemo.xcodeproj'
   pod 'Bugly'
   pod 'Sentry', :git => 'https://github.com/getsentry/sentry-cocoa.git', :tag => '7.10.2'
+  
   # pod 'BuglyHotfix'
   end
   
   target 'Live' do
     project 'Live/Live.xcodeproj'
   common_pods
-  pod 'GPUImage'
   
+  #LFRtmp中包含了GPUImage
+  #pod 'GPUImage'
+  
+  pod 'LFRtmp',:path => './LFRtmp'
+  #pod 'LFLiveKit'
   end
   
 end

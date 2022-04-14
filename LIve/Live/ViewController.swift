@@ -10,6 +10,22 @@ import AudioUnit
 import AVFAudio
 import Darwin
 
+struct AAA {
+    let a:Int8
+    let b:Int8
+}
+
+struct BBB {
+    let a:Int8?
+    let b:Int8?
+}
+
+struct CCC {
+    let a:Int8!
+    let b:Int8!
+}
+
+
 class ViewController: UIViewController {
     
     
@@ -20,6 +36,24 @@ class ViewController: UIViewController {
         let v1:UInt16 = 0x1234
         let v2:UInt16 = (v1 & 0xff00) >> 8
         debugPrint(String(format: "%x", v2))
+        
+        
+        let a: Int? = 10
+        let b: Int? = nil
+        let c: Int = 10
+        let aaa = AAA.init(a: 1, b: 2)
+        let bbb = BBB.init(a: 1, b: 2)
+        let ccc = CCC.init(a: 1, b: 2)
+        debugPrint(
+            MemoryLayout.stride(ofValue: a),
+            MemoryLayout.stride(ofValue: b),
+            MemoryLayout.stride(ofValue: c)
+        )
+        debugPrint(
+            MemoryLayout.stride(ofValue: aaa),
+            MemoryLayout.stride(ofValue: bbb),
+            MemoryLayout.stride(ofValue: ccc)
+        )
         
 //        do {
 //            let path = Bundle.main.path(forResource: "MiAmor", ofType: ".mp3")!
@@ -35,8 +69,12 @@ class ViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         do {
+            if auPlayer != nil {
+                auPlayer?.stop()
+            }
             //let path = Bundle.main.bundlePath.appending("/MiAmor.mp3")
-            let path = Bundle.main.path(forResource: "MiAmor.mp3", ofType: nil)!
+            //let path = Bundle.main.path(forResource: "MiAmor", ofType: "mp3")!
+            let path = Bundle.main.path(forResource: "111", ofType: "aac")!
             debugPrint(path)
             auPlayer = try AUGraphPlayer.init(filePath: path)
             if auPlayer?.play() == true {

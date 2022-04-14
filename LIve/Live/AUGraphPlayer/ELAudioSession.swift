@@ -33,7 +33,7 @@ class ELAudioSession {
     var catetory:AVAudioSession.Category? = nil
     
     lazy private(set)
-    var preferredSampleRate:Double = 44100.0
+    var preferredSampleRate:Float64 = 44100.0
     
 }
 

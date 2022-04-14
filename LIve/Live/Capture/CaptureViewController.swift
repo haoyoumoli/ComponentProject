@@ -6,9 +6,9 @@
 //
 
 import UIKit
-import GPUImage
 import SnapKit
 import CoreMedia
+import LFRtmp
 
 class CaptureViewController: UIViewController {
     
