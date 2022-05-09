@@ -10,20 +10,7 @@ import AudioUnit
 import AVFAudio
 import Darwin
 
-struct AAA {
-    let a:Int8
-    let b:Int8
-}
 
-struct BBB {
-    let a:Int8?
-    let b:Int8?
-}
-
-struct CCC {
-    let a:Int8!
-    let b:Int8!
-}
 
 
 class ViewController: UIViewController {
@@ -33,27 +20,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let v1:UInt16 = 0x1234
-        let v2:UInt16 = (v1 & 0xff00) >> 8
-        debugPrint(String(format: "%x", v2))
         
         
-        let a: Int? = 10
-        let b: Int? = nil
-        let c: Int = 10
-        let aaa = AAA.init(a: 1, b: 2)
-        let bbb = BBB.init(a: 1, b: 2)
-        let ccc = CCC.init(a: 1, b: 2)
-        debugPrint(
-            MemoryLayout.stride(ofValue: a),
-            MemoryLayout.stride(ofValue: b),
-            MemoryLayout.stride(ofValue: c)
-        )
-        debugPrint(
-            MemoryLayout.stride(ofValue: aaa),
-            MemoryLayout.stride(ofValue: bbb),
-            MemoryLayout.stride(ofValue: ccc)
-        )
+//        let v1:UInt16 = 0x1234
+//        let v2:UInt16 = (v1 & 0xff00) >> 8
+//        debugPrint(String(format: "%x", v2))
+        
+     //  printMemoryStrideForManyType()
+        
+        demoForOperationQueueAndGCD()
         
 //        do {
 //            let path = Bundle.main.path(forResource: "MiAmor", ofType: ".mp3")!
@@ -61,9 +36,10 @@ class ViewController: UIViewController {
 //        } catch let error {
 //            debugPrint(error)
 //        }
-        
+//
         //bytesCopyDemo()
         // Do any additional setup after loading the view.
+            
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -82,6 +58,135 @@ class ViewController: UIViewController {
             }
         } catch let error {
             debugPrint(error)
+        }
+        
+    }
+    
+    func demoForOperationQueueAndGCD() {
+//        for _ in 0..<10 {
+//            //会开启多个线程,超过核心数
+//            DispatchQueue.global().async {
+//                sleep(3)
+//                debugPrint(Thread.current)
+//            }
+//        }
+        
+        let operation = OperationQueue()
+        debugPrint(OperationQueue.defaultMaxConcurrentOperationCount)
+        
+        let processInfo =  ProcessInfo.init()
+        //不指定这个属性会开启多个线程,超过核心数
+        //这里指定最大并发任务个数为核心数 - 1 (留一个给主线程)
+        debugPrint(processInfo.processorCount)
+        operation.maxConcurrentOperationCount = processInfo.processorCount - 1
+        for _ in 0..<10 {
+            operation.addOperation {
+                sleep(3)
+                debugPrint(Thread.current)
+            }
+        }
+     }
+    
+    func printMemoryStrideForManyType() {
+        let ablock = {
+            let int64 = Int64(0)
+            let int64_2 = Int64(0)
+            debugPrint(int64)
+        }
+        //16
+        debugPrint(MemoryLayout.stride(ofValue: ablock))
+        
+        let obj = NSObject()
+     
+        debugPrint(
+            //8
+            MemoryLayout.stride(ofValue: obj),
+            //8
+            MemoryLayout<NSObject>.stride,
+            //8
+            MemoryLayout<NSObject.Type>.stride
+        )
+        
+        let data = Data.init(count: 8)
+        
+        debugPrint(
+            //1
+            MemoryLayout<Data.Type>.stride,
+            //16
+            MemoryLayout<Data>.stride,
+            //16
+            MemoryLayout.stride(ofValue: data),
+            //16
+            MemoryLayout<Data?>.stride
+        )
+       
+        let arr:[Int64] = [1,2]
+        //8个字节
+        debugPrint(
+            "Array",
+            //8
+            MemoryLayout.stride(ofValue: arr),
+            //8
+            MemoryLayout<Array<Int>>.stride
+        )
+       
+        struct AAA {
+            let a:Int8
+            let b:Int8
+        }
+
+        struct BBB {
+            let a:Int8?
+            let b:Int8?
+        }
+
+        struct CCC {
+            let a:Int8!
+            let b:Int8!
+        }
+
+
+        do {
+            let a: Int? = 10
+            let b: Int? = nil
+            let c: Int = 10
+            let aaa:AAA = AAA.init(a: 1, b: 2)
+            let bbb = BBB.init(a: 1, b: 2)
+            let ccc = CCC.init(a: 1, b: 2)
+            debugPrint(
+                //16
+                MemoryLayout.stride(ofValue: a),
+                //16
+                MemoryLayout.stride(ofValue: b),
+                //8
+                MemoryLayout.stride(ofValue: c)
+            )
+            debugPrint(
+                //2
+                MemoryLayout.stride(ofValue: aaa),
+                //4
+                MemoryLayout.stride(ofValue: bbb),
+                //4
+                MemoryLayout.stride(ofValue: ccc)
+            )
+            
+            debugPrint(
+                //2
+                MemoryLayout<Int8?>.stride,
+                //1
+                MemoryLayout<Int8>.stride,
+                //4
+                MemoryLayout<Int16?>.stride,
+                //2
+                MemoryLayout<Int16>.stride
+            )
+            
+            debugPrint(
+                //16
+                MemoryLayout<String>.stride,
+                //16
+                MemoryLayout<String?>.stride
+            )
         }
         
     }
