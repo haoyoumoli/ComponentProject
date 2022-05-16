@@ -113,6 +113,16 @@ class GridCell:UICollectionViewCell {
     func commonInit() {
         
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        contentView.alpha = 0.5
+        super.touchesBegan(touches, with: event)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        contentView.alpha = 1.0
+        super.touchesEnded(touches, with: event)
+    }
 }
 
 class GridCellPresenter:NSObject,CollectionViewCellPresenter {
@@ -162,7 +172,6 @@ class RedHeaderPresenter:NSObject,CollectionViewHeaderPresenter {
     func configData(for itemView: UIView) {
         
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: 0, height: 30.0)

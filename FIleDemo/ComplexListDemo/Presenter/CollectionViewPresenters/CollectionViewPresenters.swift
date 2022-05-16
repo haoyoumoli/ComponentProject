@@ -33,6 +33,9 @@ class CollectionViewSectionPresenter:NSObject {
     var header:CollectionViewHeaderPresenter? = nil
     var footer:CollectionViewFooterPresenter? = nil
     var items:[CollectionViewCellPresenter] = []
+    
+    typealias DidSelectItemHanlder = (_ sectionPresenter:CollectionViewSectionPresenter,_ collectionView:UICollectionView,_ indexPath:IndexPath) -> Void
+    var didSelectItemHandler: DidSelectItemHanlder? = nil
 }
 
 extension CollectionViewSectionPresenter:UICollectionViewDelegateFlowLayout {
@@ -69,6 +72,12 @@ extension CollectionViewSectionPresenter:UICollectionViewDelegateFlowLayout {
         return size ?? .zero
     }
     
+}
+
+extension CollectionViewSectionPresenter {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        didSelectItemHandler?(self,collectionView,indexPath)
+    }
 }
 
 

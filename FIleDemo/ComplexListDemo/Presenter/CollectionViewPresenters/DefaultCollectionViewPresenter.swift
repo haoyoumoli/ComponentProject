@@ -10,8 +10,12 @@ import UIKit
 
 /// 提供一些统一的默认实现,分发给对应的CollectionViewSectionPresenter
 class DefaultCollectionViewPresenter:NSObject {
+    
     var sections:[CollectionViewSectionPresenter] = []
+    
 }
+
+
 
 
 //MARK: - UICollectionViewDataSource
@@ -85,3 +89,16 @@ extension DefaultCollectionViewPresenter:UICollectionViewDelegateFlowLayout {
         return sectionP.collectionView(collectionView, layout: collectionViewLayout, referenceSizeForHeaderInSection: section)
     }
 }
+
+//MARK: - Selecte
+extension DefaultCollectionViewPresenter {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let sectionP = sections[indexPath.section]
+        sectionP.collectionView(collectionView, didSelectItemAt: indexPath)
+    }
+    
+}
+
+//MARK: Highlight
+
+

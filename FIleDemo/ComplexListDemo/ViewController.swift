@@ -8,10 +8,11 @@
 import UIKit
 
 
-class ViewController: UIViewController {
-    var collectionViewPresenter =  DefaultCollectionViewPresenter()
-    
 
+
+class ViewController: UIViewController {
+    var collectionViewPresenter = DefaultCollectionViewPresenter()
+    
     private(set) var collectionV: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,17 +32,26 @@ extension ViewController {
                let sectionModel = CollectionViewSectionPresenter()
                sectionModel.header = RedHeaderPresenter()
                sectionModel.footer = BlueFooterPresenter()
+               sectionModel.didSelectItemHandler = {
+                   (sectionPresenter, collectionView, indexPath) -> Void in
+                   debugPrint("\(indexPath)")
+               }
                for _ in 0..<2 {
                    let cellP = TwoLabelCellPresenter()
                    cellP.txt0 = "三国演义 （罗贯中著长篇小说）"
                    cellP.txt1 = "《三国演义》（全名为《三国志通俗演义》，又称《三国志演义》）是元末明初小说家罗贯中根据陈寿《三国志》和裴松之注解以及民间三国故事传说经过艺术加工创作而成的长篇章回体历史演义小说，与《西游记》《水浒传》《红楼梦》并称为中国古典四大名著。该作品成书后有嘉靖壬午本等多个版本传于世，到了明末清初，毛宗岗对《三国演义》整顿回目、修正文辞、改换诗文，该版本也成为诸多版本中水平最高、流传最广的版本。"
                    sectionModel.items.append(cellP)
                }
+               
                sections.append(sectionModel)
            }
            //section 1
            do {
                let sectionModel = CollectionViewSectionPresenter()
+                sectionModel.didSelectItemHandler = {
+                   (sectionPresenter, collectionView, indexPath) -> Void in
+                   debugPrint("\(indexPath)")
+               }
                for _ in 0..<10 {
                    let cellP = GridCellPresenter()
                    sectionModel.items.append(cellP)
@@ -54,6 +64,10 @@ extension ViewController {
                sectionPresenter.sectionInsets = .init(top: 30, left: 10, bottom: 30, right: 10)
                sectionPresenter.minimumLineSpacing = 10.0
                sectionPresenter.minimumInteritemSpacing = 10.0
+               sectionPresenter.didSelectItemHandler = {
+                  (sectionPresenter, collectionView, indexPath) -> Void in
+                  debugPrint("\(indexPath)")
+              }
                for _ in 0..<10 {
                    let cellP = GridCellPresenter()
                    sectionPresenter.items.append(cellP)
