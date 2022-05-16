@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1800AC84282E5ED900ACABB1 /* UICollectionView+RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1800AC83282E5ED900ACABB1 /* UICollectionView+RegisterPresenter.swift */; };
 		1809CA6E264E0CF700A77A64 /* DocumentPickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1809CA6D264E0CF700A77A64 /* DocumentPickerManager.swift */; };
 		180B51C426C5046E00E9A67C /* C8SimpleVertexShaderDemo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180B51C326C5046E00E9A67C /* C8SimpleVertexShaderDemo.swift */; };
 		1811957526B8E3F1006B7985 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1811957426B8E3F1006B7985 /* main.swift */; };
@@ -208,6 +209,9 @@
 		1850A10426A95C0B00C15F08 /* CustomNotificationExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1850A0FF26A95C0B00C15F08 /* CustomNotificationExample.swift */; };
 		18562C82274242ED0027B665 /* BuilderControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18562C81274242ED0027B665 /* BuilderControl.swift */; };
 		18562C8427424A7E0027B665 /* TouchEventListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18562C8327424A7E0027B665 /* TouchEventListener.swift */; };
+		1857AD842831E98E004E6F24 /* TwoItemGridSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1857AD832831E98E004E6F24 /* TwoItemGridSection.swift */; };
+		1857AD862831F06F004E6F24 /* ReauseableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1857AD852831F06F004E6F24 /* ReauseableView.swift */; };
+		1857AD882831F08C004E6F24 /* ViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1857AD872831F08C004E6F24 /* ViewPresenter.swift */; };
 		185AB937265CD3F3006EC3E2 /* UIViewController+Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185AB936265CD3F3006EC3E2 /* UIViewController+Current.swift */; };
 		185B7C0C26526169007890AA /* DefaultValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B7C0B26526169007890AA /* DefaultValues.swift */; };
 		185B7C0E265262F7007890AA /* String+DefaultValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B7C0D265262F7007890AA /* String+DefaultValue.swift */; };
@@ -245,6 +249,15 @@
 		18B5BFC9265F8D440087E6C3 /* HandWriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5BFC8265F8D440087E6C3 /* HandWriteView.swift */; };
 		18B5BFCB265F8D760087E6C3 /* PointsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B5BFCA265F8D760087E6C3 /* PointsManager.swift */; };
 		18BA9C6E26453FD000341F82 /* OpenUrlHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BA9C6D26453FD000341F82 /* OpenUrlHandler.swift */; };
+		18BFD7A1282E2E87008C17CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFD7A0282E2E87008C17CE /* AppDelegate.swift */; };
+		18BFD7A3282E2E87008C17CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFD7A2282E2E87008C17CE /* SceneDelegate.swift */; };
+		18BFD7A5282E2E87008C17CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFD7A4282E2E87008C17CE /* ViewController.swift */; };
+		18BFD7A8282E2E87008C17CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18BFD7A6282E2E87008C17CE /* Main.storyboard */; };
+		18BFD7AA282E2E88008C17CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18BFD7A9282E2E88008C17CE /* Assets.xcassets */; };
+		18BFD7AD282E2E88008C17CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18BFD7AB282E2E88008C17CE /* LaunchScreen.storyboard */; };
+		18BFD7B3282E2E90008C17CE /* CollectionViewCellAndPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFD7B2282E2E90008C17CE /* CollectionViewCellAndPresenter.swift */; };
+		18BFD7B8282E4ABC008C17CE /* CollectionViewPresenters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFD7B7282E4ABC008C17CE /* CollectionViewPresenters.swift */; };
+		18BFD7BC282E4D1D008C17CE /* DefaultCollectionViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BFD7BB282E4D1D008C17CE /* DefaultCollectionViewPresenter.swift */; };
 		18C60EFA26981786003E303D /* BTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C60EF926981786003E303D /* BTree.swift */; };
 		18C60EFC26983BEA003E303D /* SortedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C60EFB26983BEA003E303D /* SortedArray.swift */; };
 		18C60EFE26983C01003E303D /* OrderedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C60EFD26983C01003E303D /* OrderedSet.swift */; };
@@ -328,6 +341,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1800AC83282E5ED900ACABB1 /* UICollectionView+RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+RegisterPresenter.swift"; sourceTree = "<group>"; };
 		1809CA6D264E0CF700A77A64 /* DocumentPickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerManager.swift; sourceTree = "<group>"; };
 		180B51C326C5046E00E9A67C /* C8SimpleVertexShaderDemo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C8SimpleVertexShaderDemo.swift; sourceTree = "<group>"; };
 		1811957226B8E3F1006B7985 /* WagesDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = WagesDemo; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -576,6 +590,9 @@
 		1850A0FF26A95C0B00C15F08 /* CustomNotificationExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNotificationExample.swift; sourceTree = "<group>"; };
 		18562C81274242ED0027B665 /* BuilderControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuilderControl.swift; sourceTree = "<group>"; };
 		18562C8327424A7E0027B665 /* TouchEventListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchEventListener.swift; sourceTree = "<group>"; };
+		1857AD832831E98E004E6F24 /* TwoItemGridSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoItemGridSection.swift; sourceTree = "<group>"; };
+		1857AD852831F06F004E6F24 /* ReauseableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReauseableView.swift; sourceTree = "<group>"; };
+		1857AD872831F08C004E6F24 /* ViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPresenter.swift; sourceTree = "<group>"; };
 		185AB936265CD3F3006EC3E2 /* UIViewController+Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Current.swift"; sourceTree = "<group>"; };
 		185B7C0B26526169007890AA /* DefaultValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValues.swift; sourceTree = "<group>"; };
 		185B7C0D265262F7007890AA /* String+DefaultValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+DefaultValue.swift"; sourceTree = "<group>"; };
@@ -619,6 +636,17 @@
 		18B5BFC8265F8D440087E6C3 /* HandWriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandWriteView.swift; sourceTree = "<group>"; };
 		18B5BFCA265F8D760087E6C3 /* PointsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointsManager.swift; sourceTree = "<group>"; };
 		18BA9C6D26453FD000341F82 /* OpenUrlHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenUrlHandler.swift; sourceTree = "<group>"; };
+		18BFD79E282E2E86008C17CE /* ComplexListDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComplexListDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		18BFD7A0282E2E87008C17CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		18BFD7A2282E2E87008C17CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		18BFD7A4282E2E87008C17CE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		18BFD7A7282E2E87008C17CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		18BFD7A9282E2E88008C17CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		18BFD7AC282E2E88008C17CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		18BFD7AE282E2E88008C17CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18BFD7B2282E2E90008C17CE /* CollectionViewCellAndPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCellAndPresenter.swift; sourceTree = "<group>"; };
+		18BFD7B7282E4ABC008C17CE /* CollectionViewPresenters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewPresenters.swift; sourceTree = "<group>"; };
+		18BFD7BB282E4D1D008C17CE /* DefaultCollectionViewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultCollectionViewPresenter.swift; sourceTree = "<group>"; };
 		18C60EF926981786003E303D /* BTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTree.swift; sourceTree = "<group>"; };
 		18C60EFB26983BEA003E303D /* SortedArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortedArray.swift; sourceTree = "<group>"; };
 		18C60EFD26983C01003E303D /* OrderedSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedSet.swift; sourceTree = "<group>"; };
@@ -815,6 +843,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		18B5BFB0265F8D1F0087E6C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18BFD79B282E2E86008C17CE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1104,6 +1139,7 @@
 				189AD41B27570A8A00A3479F /* DemoCallDirectionExt */,
 				186836272783DD7700F13FDA /* FadeLabelDemo */,
 				184A06E927C490BE00F27131 /* LabelLayoutDemo */,
+				18BFD79F282E2E87008C17CE /* ComplexListDemo */,
 				18343F59269D5D3500EF991E /* Frameworks */,
 				182CDFA02644D1E900828F4F /* Products */,
 			);
@@ -1138,6 +1174,7 @@
 				189AD41A27570A8A00A3479F /* DemoCallDirectionExt.appex */,
 				186836262783DD7700F13FDA /* FadeLabelDemo.app */,
 				184A06E827C490BE00F27131 /* LabelLayoutDemo.app */,
+				18BFD79E282E2E86008C17CE /* ComplexListDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1400,6 +1437,16 @@
 			path = ValueNotification;
 			sourceTree = "<group>";
 		};
+		1857AD892831F0A7004E6F24 /* CollectionViewPresenters */ = {
+			isa = PBXGroup;
+			children = (
+				18BFD7BB282E4D1D008C17CE /* DefaultCollectionViewPresenter.swift */,
+				18BFD7B7282E4ABC008C17CE /* CollectionViewPresenters.swift */,
+				1800AC83282E5ED900ACABB1 /* UICollectionView+RegisterPresenter.swift */,
+			);
+			path = CollectionViewPresenters;
+			sourceTree = "<group>";
+		};
 		186836272783DD7700F13FDA /* FadeLabelDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -1488,6 +1535,33 @@
 				18B5BFCA265F8D760087E6C3 /* PointsManager.swift */,
 			);
 			path = HandWriteView;
+			sourceTree = "<group>";
+		};
+		18BFD79F282E2E87008C17CE /* ComplexListDemo */ = {
+			isa = PBXGroup;
+			children = (
+				18BFD7B4282E4A0F008C17CE /* Presenter */,
+				18BFD7B2282E2E90008C17CE /* CollectionViewCellAndPresenter.swift */,
+				1857AD832831E98E004E6F24 /* TwoItemGridSection.swift */,
+				18BFD7A0282E2E87008C17CE /* AppDelegate.swift */,
+				18BFD7A2282E2E87008C17CE /* SceneDelegate.swift */,
+				18BFD7A4282E2E87008C17CE /* ViewController.swift */,
+				18BFD7A6282E2E87008C17CE /* Main.storyboard */,
+				18BFD7A9282E2E88008C17CE /* Assets.xcassets */,
+				18BFD7AB282E2E88008C17CE /* LaunchScreen.storyboard */,
+				18BFD7AE282E2E88008C17CE /* Info.plist */,
+			);
+			path = ComplexListDemo;
+			sourceTree = "<group>";
+		};
+		18BFD7B4282E4A0F008C17CE /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				1857AD852831F06F004E6F24 /* ReauseableView.swift */,
+				1857AD872831F08C004E6F24 /* ViewPresenter.swift */,
+				1857AD892831F0A7004E6F24 /* CollectionViewPresenters */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		18C60EFF26983C21003E303D /* OptimizeCollection */ = {
@@ -1969,6 +2043,23 @@
 			productReference = 18B5BFB3265F8D1F0087E6C3 /* HandWriteView.app */;
 			productType = "com.apple.product-type.application";
 		};
+		18BFD79D282E2E86008C17CE /* ComplexListDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 18BFD7AF282E2E88008C17CE /* Build configuration list for PBXNativeTarget "ComplexListDemo" */;
+			buildPhases = (
+				18BFD79A282E2E86008C17CE /* Sources */,
+				18BFD79B282E2E86008C17CE /* Frameworks */,
+				18BFD79C282E2E86008C17CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ComplexListDemo;
+			productName = ComplexListDemo;
+			productReference = 18BFD79E282E2E86008C17CE /* ComplexListDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
 		18D5A3902727F24A003C3531 /* MemoryLayoutTestDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18D5A3A22727F24C003C3531 /* Build configuration list for PBXNativeTarget "MemoryLayoutTestDemo" */;
@@ -2102,6 +2193,9 @@
 					18B5BFB2265F8D1F0087E6C3 = {
 						CreatedOnToolsVersion = 12.5;
 					};
+					18BFD79D282E2E86008C17CE = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
 					18D5A3902727F24A003C3531 = {
 						CreatedOnToolsVersion = 13.1;
 						LastSwiftMigration = 1310;
@@ -2153,6 +2247,7 @@
 				189AD41927570A8A00A3479F /* DemoCallDirectionExt */,
 				186836252783DD7700F13FDA /* FadeLabelDemo */,
 				184A06E727C490BE00F27131 /* LabelLayoutDemo */,
+				18BFD79D282E2E86008C17CE /* ComplexListDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -2372,6 +2467,16 @@
 				18B5BFC2265F8D210087E6C3 /* LaunchScreen.storyboard in Resources */,
 				18B5BFBF265F8D210087E6C3 /* Assets.xcassets in Resources */,
 				18B5BFBD265F8D1F0087E6C3 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18BFD79C282E2E86008C17CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18BFD7AD282E2E88008C17CE /* LaunchScreen.storyboard in Resources */,
+				18BFD7AA282E2E88008C17CE /* Assets.xcassets in Resources */,
+				18BFD7A8282E2E87008C17CE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2733,6 +2838,23 @@
 				18B5BFB8265F8D1F0087E6C3 /* SceneDelegate.swift in Sources */,
 				18B5BFCB265F8D760087E6C3 /* PointsManager.swift in Sources */,
 				18B5BFC9265F8D440087E6C3 /* HandWriteView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		18BFD79A282E2E86008C17CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1800AC84282E5ED900ACABB1 /* UICollectionView+RegisterPresenter.swift in Sources */,
+				18BFD7A5282E2E87008C17CE /* ViewController.swift in Sources */,
+				18BFD7A1282E2E87008C17CE /* AppDelegate.swift in Sources */,
+				1857AD842831E98E004E6F24 /* TwoItemGridSection.swift in Sources */,
+				18BFD7B8282E4ABC008C17CE /* CollectionViewPresenters.swift in Sources */,
+				18BFD7A3282E2E87008C17CE /* SceneDelegate.swift in Sources */,
+				18BFD7BC282E4D1D008C17CE /* DefaultCollectionViewPresenter.swift in Sources */,
+				18BFD7B3282E2E90008C17CE /* CollectionViewCellAndPresenter.swift in Sources */,
+				1857AD862831F06F004E6F24 /* ReauseableView.swift in Sources */,
+				1857AD882831F08C004E6F24 /* ViewPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3108,6 +3230,22 @@
 			isa = PBXVariantGroup;
 			children = (
 				18B5BFC1265F8D210087E6C3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		18BFD7A6282E2E87008C17CE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18BFD7A7282E2E87008C17CE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		18BFD7AB282E2E88008C17CE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				18BFD7AC282E2E88008C17CE /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -4337,6 +4475,66 @@
 			};
 			name = Release;
 		};
+		18BFD7B0282E2E88008C17CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5KB58A6G2C;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ComplexListDemo/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ifeng-tech.ddd.ComplexListDemo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		18BFD7B1282E2E88008C17CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5KB58A6G2C;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ComplexListDemo/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ifeng-tech.ddd.ComplexListDemo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		18D5A3A32727F24C003C3531 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4715,6 +4913,15 @@
 			buildConfigurations = (
 				18B5BFC4265F8D210087E6C3 /* Debug */,
 				18B5BFC5265F8D210087E6C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		18BFD7AF282E2E88008C17CE /* Build configuration list for PBXNativeTarget "ComplexListDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				18BFD7B0282E2E88008C17CE /* Debug */,
+				18BFD7B1282E2E88008C17CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

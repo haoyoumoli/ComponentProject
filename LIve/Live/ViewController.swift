@@ -13,22 +13,23 @@ import Darwin
 
 
 
+
+
 class ViewController: UIViewController {
     
-    
     var auPlayer:AUGraphPlayer? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        sectionModelDemo()
         
 //        let v1:UInt16 = 0x1234
 //        let v2:UInt16 = (v1 & 0xff00) >> 8
 //        debugPrint(String(format: "%x", v2))
         
      //  printMemoryStrideForManyType()
-        
-        demoForOperationQueueAndGCD()
+
+      //  demoForOperationQueueAndGCD()
         
 //        do {
 //            let path = Bundle.main.path(forResource: "MiAmor", ofType: ".mp3")!
@@ -40,6 +41,8 @@ class ViewController: UIViewController {
         //bytesCopyDemo()
         // Do any additional setup after loading the view.
             
+        
+       
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
