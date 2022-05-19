@@ -16,8 +16,6 @@ class DefaultCollectionViewPresenter:NSObject {
 }
 
 
-
-
 //MARK: - UICollectionViewDataSource
 extension DefaultCollectionViewPresenter:UICollectionViewDataSource  {
     func numberOfSections(in collectionView: UICollectionView) -> Int {

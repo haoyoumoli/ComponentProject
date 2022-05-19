@@ -8,16 +8,22 @@
 import UIKit
 
 
+protocol AAA {
+    
+}
 
-
-class ViewController: UIViewController {
+class ViewController: UIViewController,AAA {
     var collectionViewPresenter = DefaultCollectionViewPresenter()
     
     private(set) var collectionV: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         configCollectionViewData()
+        
+        debugPrint(Cell3Presenter.reuseId)
+        
     }
 }
 
@@ -40,6 +46,7 @@ extension ViewController {
                    let cellP = TwoLabelCellPresenter()
                    cellP.txt0 = "三国演义 （罗贯中著长篇小说）"
                    cellP.txt1 = "《三国演义》（全名为《三国志通俗演义》，又称《三国志演义》）是元末明初小说家罗贯中根据陈寿《三国志》和裴松之注解以及民间三国故事传说经过艺术加工创作而成的长篇章回体历史演义小说，与《西游记》《水浒传》《红楼梦》并称为中国古典四大名著。该作品成书后有嘉靖壬午本等多个版本传于世，到了明末清初，毛宗岗对《三国演义》整顿回目、修正文辞、改换诗文，该版本也成为诸多版本中水平最高、流传最广的版本。"
+                   
                    sectionModel.items.append(cellP)
                }
                
@@ -77,6 +84,7 @@ extension ViewController {
            self.collectionViewPresenter.sections = sections
            collectionV.reloadData()
     }
+    
     func setupUI() {
         let flowLayout = UICollectionViewFlowLayout()
         collectionV = UICollectionView.init(frame: .zero, collectionViewLayout: flowLayout)

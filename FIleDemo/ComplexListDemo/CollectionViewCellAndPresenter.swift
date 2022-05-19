@@ -52,6 +52,7 @@ class TwoLabelCell:UICollectionViewCell {
 class TwoLabelCellPresenter:NSObject,CollectionViewCellPresenter {
     
     var txt0:String? = nil
+    
     var txt1:String? = nil
     
     lazy private var txt0Attribute :[NSAttributedString.Key:Any] = [
@@ -216,6 +217,11 @@ class BlueFooterPresenter:NSObject,CollectionViewFooterPresenter {
 
 extension UIColor {
     class var random:UIColor {
-        return UIColor(red: CGFloat(arc4random() % 255) / 255.0, green: CGFloat(arc4random() % 255) / 255.0, blue: CGFloat(arc4random() % 255) / 255.0, alpha: 1.0)
+        return UIColor(
+            red: CGFloat(arc4random() % 255) / 255.0,
+            green: CGFloat(arc4random() % 255) / 255.0,
+            blue: CGFloat(arc4random() % 255) / 255.0,
+            alpha: 1.0
+        )
     }
 }

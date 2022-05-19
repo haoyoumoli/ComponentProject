@@ -9,5 +9,6 @@ import UIKit
 
 protocol ViewPresenter {
         
-    func configData(for itemView:UIView)
+    func configData(for view:UIView)
 }
+
