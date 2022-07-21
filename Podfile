@@ -2,10 +2,11 @@ workspace 'ComponentProject'
 
 def common_pods
   # layout
-  pod 'SnapKit'
+  pod 'SnapKit'  ,:source => 'https://github.com/CocoaPods/Specs.git'
   
   # image load
   pod 'SDWebImage'
+  
 end
 
 abstract_target 'ComponentProject' do
@@ -53,6 +54,11 @@ abstract_target 'ComponentProject' do
   #pod 'LFLiveKit'
   end
   
+  
+  target 'LargeGifDemo' do
+    project 'FileDemo/FileDemo.xcodeproj'
+  common_pods
+  end
 end
 
 

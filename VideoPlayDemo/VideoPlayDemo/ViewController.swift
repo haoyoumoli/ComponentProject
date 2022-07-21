@@ -20,30 +20,30 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imageView.contentMode = .scaleAspectFit
-        view.addSubview(imageView)
-        imageView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
-        
-//        DispatchQueue.main.async {
-//            let customPlay = CustomPlayViewController()
-//            self.present(customPlay, animated: true, completion: nil)
-//
-////            let jpPlayController = PlayVideoViewController()
-////            self.present(jpPlayController, animated: false, completion:  {
-////                [weak jpPlayController] in
-////                jpPlayController?.playVideo(url: news)
-////
-////            })
-//
-////            let isMp4 = "http://www.baidu.com/231324564.mp4".isMp4
-////            debugPrint(isMp4)
-//
-//
-//
+//        imageView.contentMode = .scaleAspectFit
+//        view.addSubview(imageView)
+//        imageView.snp.makeConstraints { make in
+//            make.edges.equalToSuperview()
 //        }
+        
+        
+        DispatchQueue.main.async {
+            let customPlay = CustomPlayViewController()
+            self.present(customPlay, animated: true, completion: nil)
+
+//            let jpPlayController = PlayVideoViewController()
+//            self.present(jpPlayController, animated: false, completion:  {
+//                [weak jpPlayController] in
+//                jpPlayController?.playVideo(url: news)
+//
+//            })
+
+//            let isMp4 = "http://www.baidu.com/231324564.mp4".isMp4
+//            debugPrint(isMp4)
+
+
+
+        }
         
 
         

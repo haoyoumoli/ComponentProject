@@ -19,14 +19,15 @@ protocol ReuseableView2{
     static var reuseType:UIView.Type { get }
 }
 
-extension ReuseableView2 {
+ extension ReuseableView2 {
     static var reuseId:String {
         return String(reflecting:reuseType)
     }
 }
 
 //MARK: - Cell
-protocol CollectionCellReusablePresenter: ViewPresenter2,ReuseableView2,UICollectionViewDelegateFlowLayout where View:UICollectionViewCell {}
+protocol CollectionCellReusablePresenter: ViewPresenter2,ReuseableView2,UICollectionViewDelegateFlowLayout where View:UICollectionViewCell {
+ }
 
 extension CollectionCellReusablePresenter {
     

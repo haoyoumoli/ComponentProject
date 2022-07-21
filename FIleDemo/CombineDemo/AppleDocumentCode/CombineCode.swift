@@ -60,7 +60,8 @@ extension CombineCode {
         ///可以不设置初始值
         let subject = PassthroughSubject<Int, NSError>()
         
-        subject.sink(receiveCompletion: {
+        subject
+            .sink(receiveCompletion: {
             switch $0 {
             case .finished:
                 debugPrint("完成")
