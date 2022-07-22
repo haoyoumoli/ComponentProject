@@ -50,11 +50,43 @@ class RedView:UIView {
 class ViewController: UIViewController {
     
     override func viewDidLoad() {
+    
         super.viewDidLoad()
-        demo3()
+        demo4()
+       // demo3()
         //demo2()
     }
     
+    
+    func demo4() {
+        let img = AspectImageView()
+        let label = UILabel()
+        
+        view.addSubview(img)
+        view.addSubview(label)
+        
+        label.text = "看看UIImageView在有图片后的约束变化"
+        img.contentMode = .scaleAspectFit
+        img.setImage(UIImage(named: "girl2"))
+        
+        img.translatesAutoresizingMaskIntoConstraints = false
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            img.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            img.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+          //  img.widthAnchor.constraint(equalToConstant: 300),
+            img.widthAnchor.constraint(lessThanOrEqualTo: view.widthAnchor, multiplier: 1.0,constant: -40.0),
+//            img.widthAnchor.constraint(equalTo: view.widthAnchor),
+//            img.heightAnchor.constraint(equalToConstant: 100),
+            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            label.topAnchor.constraint(equalTo: img.bottomAnchor,constant: 10.0),
+        ])
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            img.setImage(UIImage(named: "circle"))
+        }
+    }
     
     func demo3() {
         
@@ -110,11 +142,11 @@ class ViewController: UIViewController {
         }
         
         let horizantolLayoutView = LayoutView()
-        horizantolLayoutView.layouter = HorizantalItemAlignLayouter()
-        let layouter =  horizantolLayoutView.layouter as! HorizantalItemAlignLayouter
-        layouter.itemHorizantalAlign = .bottom
+        let layouter = HorizantalItemAlignLayouter()
+        horizantolLayoutView.layouter = layouter
+     
+        layouter.itemHorizantalAlign = .center
         layouter.addLayoutItem(getLabelLayoutItem("啊"))
-
         //添加指定大小的view
         layouter.addLayoutItem(getSizedViewLayoutIten(size: .init(width: 30, height: 60.0)))
         
@@ -129,14 +161,12 @@ class ViewController: UIViewController {
         ///添加使用自动布局确定大小的view
         layouter.addLayoutItem(getCustomLayoutItem("自动布局view"))
         layouter.addLayoutItem(getCustomLayoutItem("很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长很长"))
-
         layouter.addLayoutItem(getLabelLayoutItem("啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊"))
         
       
         horizantolLayoutView.layer.borderColor = UIColor.black.cgColor
         horizantolLayoutView.layer.borderWidth = 1.0
         view.addSubview(horizantolLayoutView)
-        
         horizantolLayoutView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             horizantolLayoutView.topAnchor.constraint(equalTo: view.topAnchor,constant: 50),

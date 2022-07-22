@@ -29,7 +29,7 @@ class LayoutView:UIView {
 }
 
 ///布局尺寸,支持自动计算或者手动指定
-///如果指定为sizeFit, child要实现sizeThatFits方法
+///如果指定为sizeFit, child要实现sizeThatFits(_ size: CGSize)方法
 enum SizeLayout:Equatable {
     case sizeFit
     case value(size:CGSize)
