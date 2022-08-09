@@ -52,9 +52,143 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
     
         super.viewDidLoad()
-        demo4()
+        
+        let json = #"{"title":"2131" }"#
+        
+        let dateFormate = DateFormatter()
+        dateFormate.dateFormat = "YYYY-MM-dd HH:mm:ss"
+        
+        let date = Date()
+        let timeInt = date.timeIntervalSince1970
+        let str = dateFormate.string(from: date)
+        let ti = dateFormate.date(from: str)!.timeIntervalSince1970
+        debugPrint(timeInt,ti)
+        //demo12()
+       // demo11()
+       // demo10()
+       // demo9()
+       // demo8()
+       // demo7()
+       // demo6()
+       // demo4()
        // demo3()
         //demo2()
+    }
+    
+    
+    
+    func demo12() {
+        let hanlder = NSDecimalNumberHandler.init(roundingMode: .bankers, scale: 2, raiseOnExactness: true, raiseOnOverflow: true, raiseOnUnderflow: true, raiseOnDivideByZero: true)
+        let max = NSDecimalNumber.maximum
+        let result = try max.adding(NSDecimalNumber.one,withBehavior: hanlder)
+       
+       
+        
+    }
+
+    func demo11() {
+        ///开始时间倒计时
+        func getCountDownBeginTimeStr() -> String {
+          
+            let nowTime = Date().timeIntervalSince1970
+            let startTime:TimeInterval = nowTime + (60 * 60 * 24 * 365 * 3) + (60 * 60 * 24 * 30 * 3) + (60 * 60 * 24 * 2) + (3600 * 3) + (60 * 8) + 45
+            let duration = Int(startTime - nowTime)
+            return duration.dateDurationString(yearMark:"years ")
+        }
+        
+        debugPrint(getCountDownBeginTimeStr())
+    }
+    
+    
+    func demo10() {
+        let textV = YLTextView()
+        textV.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(textV)
+        NSLayoutConstraint.activate([
+            textV.leftAnchor.constraint(equalTo: view.leftAnchor),
+            textV.rightAnchor.constraint(equalTo: view.rightAnchor),
+            textV.topAnchor.constraint(equalTo: view.topAnchor, constant: 50.0),
+            textV.heightAnchor.constraint(lessThanOrEqualToConstant: 70)
+        ])
+        textV.text = "《三国演义》（全名为《三国志通俗演义》，又称《三国志演义》）是元末明初小说家罗贯中根据陈寿《三国志》和裴松之注解以及民间三国故事传说经过艺术加工创作而成的长篇章回体历史演义小说，与《西游记》《水浒传》《红楼梦》并称为中国古典四大名著。该作品成书后有嘉靖壬午本等多个版本传于世，到了明末清初，毛宗岗对《三国演义》整顿回目、修正文辞、改换诗文，该版本也成为诸多版本中水平最高、流传最广的版本。《三国演义》可大致分为黄巾起义、董卓之乱、群雄逐鹿、三国鼎立、三国归晋五大部分，描写了从东汉末年到西晋初年之间近百年的历史风云，以描写战争为主，诉说了东汉末年的群雄割据混战和魏、蜀、吴三国之间的政治和军事斗争，最终司马炎一统三国，建立晋朝的故事。反映了三国时代各类社会斗争与矛盾的转化，并概括了这一时代的历史巨变，塑造了一群叱咤风云的三国英雄人物。《三国演义》是中国文学史上第一部章回小说，是历史演义小说的开山之作，也是第一部文人长篇小说，明清时期甚至有“第一才子书”之称。"
+    }
+    
+    
+    func demo9() {
+        let decimalString = "9999999999999999999999999999999999999999999999999999999999999999999999999999999.99"
+        debugPrint(decimalString.count)
+        if let decimal = Decimal.init(string: decimalString) {
+            ///可以创建成功,但是最大有效位数是38位
+           debugPrint("\(decimal)")
+        } else {
+           debugPrint("创建失败")
+        }
+    }
+    
+    func demo8() {
+        let aaa = PriceFormatter()
+        aaa.formatText("¥5.12313")
+        aaa.formatText("¥05.12313")
+        aaa.formatText("0¥05.12313")
+        aaa.formatText("¥7.5.12313")
+      
+    }
+    
+    func demo7() {
+        let txt = YLTextField()
+        txt.frame = .init(x: 20, y: 100, width: view.bounds.width - 40.0, height: 40.0)
+        txt.layer.borderWidth = 1.0
+        txt.layer.borderColor = UIColor.red.cgColor
+        view.addSubview(txt)
+    }
+    
+    func demo6() {
+        /// NSTextLayout 系统计算文本高度,支持指定最大行数
+        
+        let paraStyle = NSMutableParagraphStyle()
+        //paraStyle.lineHeightMultiple = 1.5
+        paraStyle.minimumLineHeight = 50.0
+        /// 万恶之源
+        //paraStyle.lineBreakMode = .byTruncatingTail
+        let attributeStr = NSAttributedString.init(string: "《三国演义》（全名为《三国志通俗演义》，又称《三国志演义》）是元末明初小说家罗贯中根据陈寿《三国志》和裴松之注解以及民间三国故事传说经过艺术加工创作而成的长篇章回体历史演义小说，与《西游记》《水浒传》《红楼梦》并称为中国古典四大名著。该作品成书后有嘉靖壬午本等多个版本传于世，到了明末清初，毛宗岗对《三国演义》整顿回目、修正文辞、改换诗文，该版本也成为诸多版本中水平最高、流传最广的版本。", attributes: [.font:UIFont.systemFont(ofSize: 20.0),
+                                                                                                                                                                                                                                                                              .paragraphStyle:paraStyle
+        ])
+        
+        
+        let size = attributeStr.getSize(for: 300, maxLine: 3)
+        //let size = attributeStr.getSize2(for: 300, maxLine: 0)
+        //let size  = attributeStr.boundingRect(with: .init(width: 300, height: CGFloat.greatestFiniteMagnitude), options: [.usesFontLeading,.usesLineFragmentOrigin], context: nil).size
+        debugPrint(size)
+        
+        let label = UILabel()
+        label.numberOfLines = 0
+        view.addSubview(label)
+        label.attributedText = attributeStr
+        ///必须重新设置截断模式,否则不起作用
+        label.lineBreakMode = .byTruncatingTail
+        label.frame = .init(x: 0, y: 100, width: size.width, height:size.height)
+    }
+    
+    func demo5() {
+        let txt = UITextField()
+        txt.translatesAutoresizingMaskIntoConstraints = false
+        txt.clearButtonMode = .always
+        txt.backgroundColor = UIColor.lightGray
+        do {
+            let lbl = UILabel()
+            lbl.text = "1213"
+            txt.rightView = lbl
+            txt.rightViewMode = .always
+        }
+        
+        view.addSubview(txt)
+        NSLayoutConstraint.activate([
+            txt.leftAnchor.constraint(equalTo: view.leftAnchor,constant: 10.0   ),
+            txt.rightAnchor.constraint(equalTo: view.rightAnchor,constant: -10 ),
+            txt.heightAnchor.constraint(equalToConstant: 50.0),
+            txt.topAnchor.constraint(equalTo: view.topAnchor,constant: 120)
+            
+        ])
     }
     
     
@@ -272,5 +406,59 @@ extension UIColor {
     static var random:UIColor {
         
         return UIColor.init(red: CGFloat(arc4random() % 255)  / CGFloat(255.0), green:  CGFloat(arc4random() % 255)  / CGFloat(255.0), blue:  CGFloat(arc4random() % 255)  / CGFloat(255.0), alpha: 1.0)
+    }
+}
+
+
+extension Int{
+   
+    
+    func dateDurationString(
+        yearMark:String = "年",
+        monthMark:String = "月",
+        dayMark:String = "日",
+        hourMark:String = "小时",
+        minutMark:String = "分",
+        secondsMark:String = "秒"
+    ) -> String {
+        var duration = self
+        guard duration > 0 else  {
+            return ""
+        }
+        var result = ""
+        let year = duration / (60 * 60 * 24 * 365)
+        if year > 0 {
+            result.append("\(year)\(yearMark)")
+        }
+        duration = duration - year * (60 * 60 * 24 * 365)
+        
+        let month = duration / (60 * 60 * 24 * 30)
+        if month > 0 {
+            result.append("\(month)\(monthMark)")
+        }
+        duration = duration - month *  (60 * 60 * 24 * 30)
+        
+        let day  = duration / (60 * 60 * 24)
+        if day > 0 {
+            result.append("\(day)\(dayMark)")
+        }
+        duration = duration - day * (60 * 60 * 24)
+        
+        let hour = duration / (60 * 60)
+        if hour > 0 {
+            result.append( "\(hour)\(hourMark)")
+        }
+        duration = duration - hour * (60 * 60)
+        
+        let min = duration / (60)
+        if min > 0 {
+            result.append("\(min)\(minutMark)")
+        }
+        duration = duration - min * (60)
+        
+        if duration > 0 {
+            result.append("\(duration)\(secondsMark)")
+        }
+        return result
     }
 }

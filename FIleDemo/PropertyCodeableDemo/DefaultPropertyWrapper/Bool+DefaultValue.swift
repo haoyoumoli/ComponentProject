@@ -32,9 +32,9 @@ extension KeyedDecodingContainer {
     func decode(
         _ type:Default<Bool.False>.Type,
         forKey key:Key) throws -> Default<Bool.False> {
-    
+
          var v = try decodeIfPresent(type, forKey: key) ?? Default.init(wrappedValue: Bool.False.defaultValue)
-        
+
         ///解析string 和 int 类型 看看是否有为 true的可能
         if v.wrappedValue == Bool.False.defaultValue {
             if var strV = (try? decodeIfPresent(String.self, forKey: key)) {
@@ -48,7 +48,7 @@ extension KeyedDecodingContainer {
                 }
                 return v
             }
-            
+
             if let intV = (try? decodeIfPresent(Int8.self, forKey: key)),
                intV == 1 {
                 v.wrappedValue = true

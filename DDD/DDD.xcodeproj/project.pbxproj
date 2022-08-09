@@ -18,6 +18,10 @@
 		18896FAA2885566200D8A9C4 /* StringTrimExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18896FA42885566200D8A9C4 /* StringTrimExtension.swift */; };
 		18896FAB2885566200D8A9C4 /* ActiveBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18896FA52885566200D8A9C4 /* ActiveBuilder.swift */; };
 		18896FAC2885566200D8A9C4 /* ActiveType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18896FA62885566200D8A9C4 /* ActiveType.swift */; };
+		188A12DF289BA2E2003BE76A /* YLTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188A12DE289BA2E2003BE76A /* YLTextView.swift */; };
+		1892DCEC2892669E00DBAAD9 /* YLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1892DCEB2892669E00DBAAD9 /* YLTextField.swift */; };
+		1892DCF5289294C900DBAAD9 /* PriceFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1892DCF4289294C900DBAAD9 /* PriceFormatter.swift */; };
+		1896FD33288A892B00D894EA /* NSAttributeString+GetSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896FD32288A892B00D894EA /* NSAttributeString+GetSize.swift */; };
 		189928C62887DF3D00DD6FF2 /* NoRenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189928C52887DF3D00DD6FF2 /* NoRenderView.swift */; };
 		189928C82887DF7800DD6FF2 /* LayoutSubview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189928C72887DF7800DD6FF2 /* LayoutSubview.swift */; };
 		189B4B032888E9C4006A7BF1 /* LayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189B4B022888E9C4006A7BF1 /* LayoutView.swift */; };
@@ -40,6 +44,10 @@
 		18896FA52885566200D8A9C4 /* ActiveBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveBuilder.swift; sourceTree = "<group>"; };
 		18896FA62885566200D8A9C4 /* ActiveType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveType.swift; sourceTree = "<group>"; };
 		18896FA72885566200D8A9C4 /* ActiveLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveLabel.h; sourceTree = "<group>"; };
+		188A12DE289BA2E2003BE76A /* YLTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YLTextView.swift; sourceTree = "<group>"; };
+		1892DCEB2892669E00DBAAD9 /* YLTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YLTextField.swift; sourceTree = "<group>"; };
+		1892DCF4289294C900DBAAD9 /* PriceFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceFormatter.swift; sourceTree = "<group>"; };
+		1896FD32288A892B00D894EA /* NSAttributeString+GetSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttributeString+GetSize.swift"; sourceTree = "<group>"; };
 		189928C52887DF3D00DD6FF2 /* NoRenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoRenderView.swift; sourceTree = "<group>"; };
 		189928C72887DF7800DD6FF2 /* LayoutSubview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutSubview.swift; sourceTree = "<group>"; };
 		189B4B022888E9C4006A7BF1 /* LayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutView.swift; sourceTree = "<group>"; };
@@ -77,7 +85,7 @@
 		18896F8C2885472800D8A9C4 /* DDD */ = {
 			isa = PBXGroup;
 			children = (
-				189928C42887DF2200DD6FF2 /* LayoutView */,
+				189928C42887DF2200DD6FF2 /* CustomViews */,
 				18896FA12885566200D8A9C4 /* ActiveLabel */,
 				18896F8D2885472800D8A9C4 /* AppDelegate.swift */,
 				18896F8F2885472800D8A9C4 /* SceneDelegate.swift */,
@@ -86,6 +94,9 @@
 				18896F962885472A00D8A9C4 /* Assets.xcassets */,
 				18896F982885472A00D8A9C4 /* LaunchScreen.storyboard */,
 				18896F9B2885472A00D8A9C4 /* Info.plist */,
+				1896FD32288A892B00D894EA /* NSAttributeString+GetSize.swift */,
+				1892DCEB2892669E00DBAAD9 /* YLTextField.swift */,
+				1892DCF4289294C900DBAAD9 /* PriceFormatter.swift */,
 			);
 			path = DDD;
 			sourceTree = "<group>";
@@ -103,7 +114,7 @@
 			path = ActiveLabel;
 			sourceTree = "<group>";
 		};
-		189928C42887DF2200DD6FF2 /* LayoutView */ = {
+		189928C42887DF2200DD6FF2 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
 				189928C52887DF3D00DD6FF2 /* NoRenderView.swift */,
@@ -111,8 +122,9 @@
 				189B4B022888E9C4006A7BF1 /* LayoutView.swift */,
 				189B4B042888FA5D006A7BF1 /* HorizantalLayouter.swift */,
 				189B4B0928895808006A7BF1 /* AspectImageView.swift */,
+				188A12DE289BA2E2003BE76A /* YLTextView.swift */,
 			);
-			path = LayoutView;
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,10 +198,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				188A12DF289BA2E2003BE76A /* YLTextView.swift in Sources */,
 				189B4B0A28895808006A7BF1 /* AspectImageView.swift in Sources */,
+				1892DCEC2892669E00DBAAD9 /* YLTextField.swift in Sources */,
 				18896FAA2885566200D8A9C4 /* StringTrimExtension.swift in Sources */,
 				189928C82887DF7800DD6FF2 /* LayoutSubview.swift in Sources */,
 				18896FAC2885566200D8A9C4 /* ActiveType.swift in Sources */,
+				1896FD33288A892B00D894EA /* NSAttributeString+GetSize.swift in Sources */,
+				1892DCF5289294C900DBAAD9 /* PriceFormatter.swift in Sources */,
 				18896FA92885566200D8A9C4 /* RegexParser.swift in Sources */,
 				189B4B052888FA5D006A7BF1 /* HorizantalLayouter.swift in Sources */,
 				18896FAB2885566200D8A9C4 /* ActiveBuilder.swift in Sources */,

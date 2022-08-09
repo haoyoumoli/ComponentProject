@@ -43,6 +43,10 @@ struct Video:Decodable {
     //
     //        state = try container.decode(State.self, forKey: .state)
     //    }
+    
+    func debugPrintValues() {
+        debugPrint("id:\(id)","title:\(title)","commentEnabled:\(commentEnabled)","state:\(state)")
+    }
 }
 
 ///为State类型设置默认值为 unknown
@@ -95,23 +99,23 @@ class ViewController: UIViewController {
         debugPrint($yellow.www())
         debugPrint(yellow)
         
-        //decodeVideo(for: "{\"id\":123456}".data(using: .utf8)!,label: "测试必要字段的解码")
+        decodeVideo(for: "{\"id\":123456}".data(using: .utf8)!,label: "测试必要字段的解码")
         
         decodeVideo(for: "{\"id\":123456,\"title\":\"MY First Video\",\"state\":\"archived\",\"commentEnabled\":true}".data(using: .utf8)!,label: "带bool的解码:true")
-        
+
         decodeVideo(for: "{\"id\":123456,\"title\":\"MY First Video\",\"state\":\"archived\",\"commentEnabled\":false}".data(using: .utf8)!,label: "带bool的解码:false")
         
         decodeVideo(for: "{\"id\":123456,\"title\":\"MY First Video\",\"state\":\"archived\",\"commentEnabled\":1}".data(using: .utf8)!,label: "带bool的解码:true 1")
-        
+
         decodeVideo(for: "{\"id\":123456,\"title\":\"MY First Video\",\"state\":\"archived\",\"commentEnabled\":0}".data(using: .utf8)!,label: "带bool的解码:false 0")
         
         
         decodeVideo(for: "{\"id\":123456,\"title\":\"MY First Video\",\"state\":\"archived\",\"commentEnabled\":\"true\"}".data(using: .utf8)!,label: "带bool的解码:'true'")
         
         decodeVideo(for: "{\"id\":123456,\"title\":\"MY First Video\",\"state\":\"archived\",\"commentEnabled\":\"false\"}".data(using: .utf8)!,label: "带bool的解码:'false'")
-        
+
         decodeVideo(for: "{\"id\":123456,\"title\":\"MY First Video\",\"state\":\"archived\"}".data(using: .utf8)!,label: "带状态的解码 archived")
-        
+
         decodeVideo(for: "{\"id\":123456,\"title\":\"MY First Video\",\"state\":\"reserved\"}".data(using: .utf8)!,label: "带枚举之外的状态的解码")
     }
     
@@ -122,7 +126,7 @@ class ViewController: UIViewController {
         debugPrint(label)
         if let video = try? decoder.decode(Video.self, from: data) {
             
-            debugPrint(video)
+            video.debugPrintValues()
         } else {
             debugPrint("解码失败")
         }
